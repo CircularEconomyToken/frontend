@@ -9,7 +9,6 @@ export const MainContainer = styled.div`
     height: 800px;
     position: relative;
     z-index: 1; 
-    //LOL
 
     :before {
         content: '';
