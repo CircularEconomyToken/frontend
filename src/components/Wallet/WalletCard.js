@@ -12,7 +12,6 @@ const WalletCard = () => {
     const [contract, setContract ] = useState(null);
     const [nextOrderId, setNextOrderId ] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
-    const [contractSuccessMsg, setContractSuccessMsg] = useState(null);
     const [contractInfo, setContractInfo ] = useState({
         address: "-",
         tokenName: "-",
@@ -26,25 +25,23 @@ const WalletCard = () => {
             window.ethereum.request({method: 'eth_requestAccounts'})
             .then(result => {
                 accountChangedHandler(result[0]); 
+                handleContract()
             })
         } else {
             setErrorMessage('Install MetaMask');
         }
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log('Hi Diko')
-        const data = new FormData(e.target);
+    const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         var privateKey = "eec05da571412f2911bfb3c7b8917ea7b1424c6d9a9815f5b6af06eabd7bd694";
+        var contractAddr = "0xdCD044fe2d67Baa6A1086a5e99471caCD7322b43";
         var wallet = new ethers.Wallet(privateKey, provider);
-        var contractObj = new ethers.Contract(data.get("addr"), erc20abi, wallet);
+        var contractObj = new ethers.Contract(contractAddr, erc20abi, wallet);
         setContract(contractObj);
 
         var idRequest = contractObj.nextOrderID();
-        idRequest.then(function(result){
-          setContractSuccessMsg("Contract address is saved!")
+        idRequest.then(function(result) {
           setNextOrderId(parseFloat(result));
         });
     }
@@ -114,20 +111,6 @@ const WalletCard = () => {
               <FormButton >Connect</FormButton>
               <Text> Your address: { defaultAccount }</Text>
               <Text> Your balance: { userBalance }</Text>
-            </Form>
-          </FormContent>
-        </FormWrap>
-      </Container>
-
-      <Container>
-        <FormWrap>
-          <FormContent>
-            <Form action = '#' onSubmit={handleSubmit}>
-              <FormH1>Link your contract address</FormH1>
-              <FormLabel htmlFor = 'for'>Contract address</FormLabel>
-              <FormInput type = 'text' name = "addr" placeholder = "ERC20 contract address" required/>
-              <FormButton type = 'submit'>Continue</FormButton>
-              <Text>{contractSuccessMsg}</Text>
             </Form>
           </FormContent>
         </FormWrap>
