@@ -82,14 +82,6 @@ const WalletCard = () => {
     callPromise.then(function(result){
         console.log(result[0]);
     });
-   // console.log(userAddress)
-    
-    // setContractInfo({
-    //     address: data.get("addr"),
-    //     tokenName,
-    //     tokenSymbol,
-    //     totalSupply
-    // });
 }
 
     const accountChangedHandler = (newAccount) => {
