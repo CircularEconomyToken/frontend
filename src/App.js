@@ -7,6 +7,8 @@ import InfoSection from './components/InfoSection';
 import { homeObjFour, homeObjOne, homeObjThree, homeObjTwo } from './components/InfoSection/Data';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ConnectPage from './pages/connect';
+import HistoryCard from './components/History';
+import MakeOrder from './components/History/MakeOrder';
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
         <Route path = "/about" element = {<InfoSection  { ...homeObjOne }/>} exact/>
         <Route path = "/discover" element = {<InfoSection  { ...homeObjTwo }/>} exact/>
         <Route path = "/services" element = {<InfoSection  { ...homeObjThree }/>} exact/>
-        <Route path = "/signup" element = {<InfoSection  { ...homeObjFour }/>} exact/>
+        <Route path = "/history" element = {<HistoryCard/>} exact/>
+        <Route path = "/makeOrder" element = {<MakeOrder/>} exact/>
       </Routes>
       <Footer/>
     </Router>
