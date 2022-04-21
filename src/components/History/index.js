@@ -49,7 +49,6 @@ const HistoryCard = () => {
       }
 
     useEffect(() => {
-        console.log("I have been mounted")
         getOrders();
       }, []);
 
