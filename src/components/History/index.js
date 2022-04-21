@@ -15,10 +15,9 @@ const HistoryCard = () => {
 
     const getOrders = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var privateKey = "eec05da571412f2911bfb3c7b8917ea7b1424c6d9a9815f5b6af06eabd7bd694";
         var contractAddr = "0xdCD044fe2d67Baa6A1086a5e99471caCD7322b43";
-        var wallet = new ethers.Wallet(privateKey, provider);
-        var contractObj = new ethers.Contract(contractAddr, erc20abi, wallet);
+        const signer = provider.getSigner();
+        var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
         
         var userAddr = ls.get('userAddr');
