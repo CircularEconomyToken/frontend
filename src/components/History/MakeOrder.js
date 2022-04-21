@@ -17,10 +17,9 @@ const MakeOrder = () => {
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var privateKey = "eec05da571412f2911bfb3c7b8917ea7b1424c6d9a9815f5b6af06eabd7bd694";
         var contractAddr = "0xdCD044fe2d67Baa6A1086a5e99471caCD7322b43";
-        var wallet = new ethers.Wallet(privateKey, provider);
-        var contractObj = new ethers.Contract(contractAddr, erc20abi, wallet);
+        const signer = provider.getSigner();
+        var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
 
         var idRequest = contractObj.nextOrderID();
@@ -28,43 +27,6 @@ const MakeOrder = () => {
           console.log(parseFloat(result));
           setNextOrderId(parseFloat(result));
         });
-    }
-
-    const sendTransaction = () => {
-        var obj = [25, "matrass", "one", 2, 7,2,"sandy",3,20,"0xC73164F00465bdc958c25d3d06B87D5DBECa3c5D","ddd"]
-       // var data = "0x417772cf
-       //0000000000000000000000000000000000000000000000000000000000000020 1
-       //0000000000000000000000000000000000000000000000000000000000000019 2
-       //0000000000000000000000000000000000000000000000000000000000000160 3
-       //00000000000000000000000000000000000000000000000000000000000001a0 4
-       //0000000000000000000000000000000000000000000000000000000000000002 5
-       //0000000000000000000000000000000000000000000000000000000000000007 6
-       //0000000000000000000000000000000000000000000000000000000000000002 7
-       //00000000000000000000000000000000000000000000000000000000000001e0 8
-       //0000000000000000000000000000000000000000000000000000000000000003 9
-       //0000000000000000000000000000000000000000000000000000000000000014 10
-       //000000000000000000000000c73164f00465bdc958c25d3d06b87d5dbeca3c5d 11
-       //0000000000000000000000000000000000000000000000000000000000000220 12
-       //0000000000000000000000000000000000000000000000000000000000000007 13
-       //6d61747261737300000000000000000000000000000000000000000000000000 14
-       //0000000000000000000000000000000000000000000000000000000000000003 15
-       //6f6e650000000000000000000000000000000000000000000000000000000000 16
-       //0000000000000000000000000000000000000000000000000000000000000005 17
-       //73616e6479000000000000000000000000000000000000000000000000000000 18
-       //0000000000000000000000000000000000000000000000000000000000000003 19
-       //6464640000000000000000000000000000000000000000000000000000000000"; 20
-        var params = [{
-            "from": "0xC73164F00465bdc958c25d3d06B87D5DBECa3c5D",
-            "to": "0xdCD044fe2d67Baa6A1086a5e99471caCD7322b43",
-            "gas": "3999999999000",
-            "gasPrice": "4.3635",
-            "value": "100000",
-            "data": "lol"
-        }]
-        window.ethereum.request({method: 'eth_sendTransaction', params})
-        .then(result => {
-            console.log(result);
-        })
     }
 
     const makeOrder = async (e) => {
@@ -85,9 +47,7 @@ const MakeOrder = () => {
         let myObj = {"orderId": nextOrderId, "name": name, "unit": unit, "categories": categories,
         "quantity": quantity, "expirationBlock": expirationBlock, "itemDescription": itemDescription, 
         "condition": condition, "price": price, "buyer": buyer, "location": location};
-       // sendTransaction()
        
-        console.log(myObj);
         var callPromise = contract.addOrder(myObj);
     
         callPromise.then(function(result){

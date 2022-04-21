@@ -19,6 +19,7 @@ const WalletCard = () => {
     const connectWalletHandler = async (e) => {
        e.preventDefault();
         if (window.ethereum) { 
+
             window.ethereum.request({method: 'eth_requestAccounts'})
             .then(result => {
                 accountChangedHandler(result[0]); 
