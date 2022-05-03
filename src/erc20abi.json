@@ -1,1 +1,622 @@
-[{"type":"constructor","stateMutability":"nonpayable","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"addOrder","inputs":[{"type":"tuple","name":"newOrder","internalType":"struct CircularMarketPlace.Order","components":[{"type":"uint256","name":"orderId","internalType":"uint256"},{"type":"string","name":"name","internalType":"string"},{"type":"string","name":"unit","internalType":"string"},{"type":"uint256","name":"categories","internalType":"uint256"},{"type":"uint256","name":"quantity","internalType":"uint256"},{"type":"uint256","name":"expirationBlock","internalType":"uint256"},{"type":"string","name":"itemDescription","internalType":"string"},{"type":"uint256","name":"condition","internalType":"uint256"},{"type":"uint256","name":"price","internalType":"uint256"},{"type":"address","name":"buyer","internalType":"address"},{"type":"string","name":"location","internalType":"string"}]}]},{"type":"function","stateMutability":"view","outputs":[{"type":"tuple[]","name":"","internalType":"struct CircularMarketPlace.Order[]","components":[{"type":"uint256","name":"orderId","internalType":"uint256"},{"type":"string","name":"name","internalType":"string"},{"type":"string","name":"unit","internalType":"string"},{"type":"uint256","name":"categories","internalType":"uint256"},{"type":"uint256","name":"quantity","internalType":"uint256"},{"type":"uint256","name":"expirationBlock","internalType":"uint256"},{"type":"string","name":"itemDescription","internalType":"string"},{"type":"uint256","name":"condition","internalType":"uint256"},{"type":"uint256","name":"price","internalType":"uint256"},{"type":"address","name":"buyer","internalType":"address"},{"type":"string","name":"location","internalType":"string"}]}],"name":"getOrders","inputs":[{"type":"address","name":"user","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"uint256","name":"","internalType":"uint256"}],"name":"nextOrderID","inputs":[]}]
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "usecase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "earliestBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Offer",
+				"name": "newOffer",
+				"type": "tuple"
+			},
+			{
+				"internalType": "address",
+				"name": "orderOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			}
+		],
+		"name": "addOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "unit",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "categories",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "condition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Order",
+				"name": "newOrder",
+				"type": "tuple"
+			}
+		],
+		"name": "addOrder",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "OrderID",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "seller",
+				"type": "address"
+			}
+		],
+		"name": "buy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "Owner",
+				"type": "address"
+			}
+		],
+		"name": "deleteOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			}
+		],
+		"name": "deleteOrder",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllSellers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
+			}
+		],
+		"name": "getOffer",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "usecase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "earliestBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Offer",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			}
+		],
+		"name": "getOffers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "usecase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "earliestBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Offer[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "getOrder",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "unit",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "categories",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "condition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Order",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "getOrders",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "unit",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "categories",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "condition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Order[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "nextOrderID",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "usecase",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "earliestBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Offer",
+				"name": "newOffer",
+				"type": "tuple"
+			},
+			{
+				"internalType": "address",
+				"name": "Owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
+			}
+		],
+		"name": "updateOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "unit",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "categories",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expirationBlock",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "condition",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "status",
+						"type": "string"
+					}
+				],
+				"internalType": "struct CircularMarketPlace.Order",
+				"name": "newOrder",
+				"type": "tuple"
+			}
+		],
+		"name": "updateOrder",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
