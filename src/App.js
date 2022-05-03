@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ConnectPage from './pages/connect';
 import HistoryCard from './components/History';
 import MakeOrder from './components/History/MakeOrder';
+import BrowseOrders from './components/BrowseOrders';
+import MakeOffer from './components/BrowseOrders/MakeOffer';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path = "/services" element = {<InfoSection  { ...homeObjThree }/>} exact/>
         <Route path = "/history" element = {<HistoryCard/>} exact/>
         <Route path = "/makeOrder" element = {<MakeOrder/>} exact/>
+        <Route path = "/browseOrders" element = {<BrowseOrders/>} exact/>
+        <Route path = "/makeOffer" element = {<MakeOffer/>} exact/>
       </Routes>
       <Footer/>
     </Router>

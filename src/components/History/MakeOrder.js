@@ -41,7 +41,6 @@ const MakeOrder = () => {
         var condition = data.get("condition");
         var price = data.get("price");
         var location = data.get("location");
-
         var buyer = ls.get('userAddr');
 
         let myObj = {"orderId": nextOrderId, "name": name, "unit": unit, "categories": categories,
