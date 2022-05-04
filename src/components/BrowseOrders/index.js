@@ -24,10 +24,13 @@ const BrowseOrders = () => {
         var userAddr = ls.get('userAddr');
 
         allSellerAddress.then(function(result){
+            
             for(var i=0; i<result.length; i++){
                 if(result[i].toLowerCase() != userAddr.toLowerCase()){
+                    console.log(result[i]);
                     var callPromise = contractObj.getOrders(result[i]);
                     callPromise.then(function(item){
+                        console.log(item);
                         item.map(i => allOrders.push(i));
                         showAllOrders(allOrders)
                     });

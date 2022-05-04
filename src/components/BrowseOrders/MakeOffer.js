@@ -37,9 +37,6 @@ const MakeOffer = () => {
 
         let offerObj = {"price": price, "usecase": usecase, "earliestBlock": earliestBlock,
         "_address": userAddress, "status": status};
-
-        console.log(OrderDetail.order);
-        console.log(BrowseOrders.orderOwner);
        
         /*var callPromise = contract.addOffer(offerObj, orderOwner, orderId);
     
