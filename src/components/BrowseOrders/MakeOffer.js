@@ -4,11 +4,9 @@ import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
     FormButton, Text, Column, Row} from './MakeOfferElements';
-
-const {orderID} = require('./OrderDetail.js');
-const {productName} = require('./OrderDetail.js');
-//const {orderOwner} = require('./OrderDetail.js');
-
+import OrderDetail from './OrderDetail';
+import BrowseOrders from '.';
+//import { render } from '@testing-library/react';
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
@@ -24,14 +22,13 @@ const MakeOffer = () => {
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
-
         
     }
 
     const makeOffer = async (e) => {
         e.preventDefault();
         const data = new FormData(e.target);
-        
+
         var price = data.get("price");
         var usecase = data.get("usecase");
         var earliestBlock = data.get("earliestBlock");
@@ -40,6 +37,9 @@ const MakeOffer = () => {
 
         let offerObj = {"price": price, "usecase": usecase, "earliestBlock": earliestBlock,
         "_address": userAddress, "status": status};
+
+        console.log(OrderDetail.order);
+        console.log(BrowseOrders.orderOwner);
        
         /*var callPromise = contract.addOffer(offerObj, orderOwner, orderId);
     
@@ -49,8 +49,12 @@ const MakeOffer = () => {
         });*/
   }
 
+  //render() { const {data} = this.props.name;
+  
+
   return (
     <>
+
     <Container>
     
         <FormWrap>
@@ -58,7 +62,7 @@ const MakeOffer = () => {
             <Form  onSubmit={makeOffer}>
               <Row>
               <Column>
-                <Text> Product Name: </Text>
+                
               </Column>
               </Row>
               <FormH1>Make an offer</FormH1>
@@ -83,7 +87,9 @@ const MakeOffer = () => {
         </FormWrap>
       </Container>
     </>
-  )
+  );
+  //}
 }
+
 
 export default MakeOffer;

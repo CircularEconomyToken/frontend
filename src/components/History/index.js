@@ -15,7 +15,7 @@ const HistoryCard = () => {
 
     const getOrders = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var contractAddr = "0xdCD044fe2d67Baa6A1086a5e99471caCD7322b43";
+        var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
@@ -66,7 +66,7 @@ const HistoryCard = () => {
                             <Option value = "3">Category 3</Option>
                         </Select>
                         <NavBtn>
-                            <NavBtnLink to = '/makeOrder'>Make order</NavBtnLink>
+                            <NavBtnLink to = '/makeOrder'>Make new order</NavBtnLink>
                         </NavBtn>
                     </Filter>
                 </FilterContainer>
