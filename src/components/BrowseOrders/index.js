@@ -19,28 +19,38 @@ const BrowseOrders = () => {
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
-        const allOrders = [];
         var allSellerAddress = contractObj.getAllSellers();
         var userAddr = ls.get('userAddr');
-
+        const allUniqueAddresses = [];
+        
         allSellerAddress.then(function(result){
             for(var i=0; i<result.length; i++){
+                console.log(result[i].buyer);
                 if(result[i].toLowerCase() != userAddr.toLowerCase()){
-                    var callPromise = contractObj.getOrders(result[i]);
-                    callPromise.then(function(item){
-                        item.map(i => allOrders.push(i));
-                        showAllOrders(allOrders)
-                    });
-                    
-                }              
+                    if (!allUniqueAddresses.includes(result[i])) {
+                         allUniqueAddresses.push(result[i]); 
+                         showAllOrders(contractObj, allUniqueAddresses)
+                    }
+                }            
             }
         });
     }
 
-    const showAllOrders = (allOrderList) => {
-        var filtered = allOrderList.filter(item => item.status == "active")
-        setInitialOrders(filtered);
-        setOrders(filtered);
+    const showAllOrders = (contractObj, allUniqueAddresses) => {
+        const allOrders = [];
+        allUniqueAddresses.forEach(address => {
+            var callPromise = contractObj.getOrders(address);
+            callPromise.then(function(item){
+                item.forEach(i => {
+                    if (!allOrders.includes(i)) {
+                        allOrders.push(i);
+                    }
+                    var filtered = allOrders.filter(item => item.status == "active" || item.status == "Active")
+                    setInitialOrders(filtered);
+                    setOrders(filtered);
+                })
+            });
+       })
     }
 
     const changeCategory = (category) => {

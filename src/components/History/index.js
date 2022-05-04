@@ -24,7 +24,7 @@ const HistoryCard = () => {
         var callPromise = contractObj.getOrders(userAddr);
         callPromise.then(function(result){
             console.log(result);
-            var filtered = result.filter(item => item.status == "Active")
+            var filtered = result.filter(item => item.status == "Active" || item.status == "active")
             setInitialOrders(filtered);
             setOrders(filtered);
         });
