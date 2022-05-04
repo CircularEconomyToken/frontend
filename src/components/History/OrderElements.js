@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link as LinkR} from 'react-router-dom'
 
 export const Container = styled.div`
     flex: 1;
@@ -35,4 +36,34 @@ export const Column = styled.div`
     width: 200px;
     margin-bottom: 15px;
     padding: 0 15px;
+`
+
+export const NavBtn = styled.div`
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`
+
+export const NavBtnLink = styled(LinkR)`
+    border-radius: 50px;
+    background: #01BF71;
+    white-space: nowrap;
+    padding: 10px 22px;
+    color: #010606;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        background: #dbbea1ff;
+        color: #010606;
+    }
 `

@@ -3,15 +3,15 @@ import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import { InfoContainer, InfoWrapper, Title, FilterContainer, Filter, 
-    FilterText, Select, Option, OrderContainer, EmptyView, NavBtn, 
-    NavBtnLink } from './BrowseElements';
-import Order from './OrderDetail'
+    FilterText, Select, Option, OrderContainer, EmptyView} from './BrowseElements';
+import OrderDetail from './OrderDetail'
 
 const BrowseOrders = () => {
     const [contract, setContract] = useState(null);
     const [initialOrders, setInitialOrders] = useState([]);
     const [orders, setOrders] = useState([]);
     const [currentCategory, setCurrentCategory] = useState(null);
+    const orderOwnerContext = React.createContext('orderOwner');
 
     const getAllSellers = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -32,6 +32,7 @@ const BrowseOrders = () => {
                     callPromise.then(function(orders){
                     //console.log(result);
                     //allOrders.push(orders);
+                    orderOwnerContext.displayName = result[i];
                     setInitialOrders(orders);
                     setOrders(orders);
                 });
@@ -85,7 +86,7 @@ const BrowseOrders = () => {
                 </FilterContainer>
                 <OrderContainer>
                     {orders.map(item => (
-                        <Order item = {item} />
+                        <OrderDetail item = {item} />
                     ))}
                     <EmptyView/>
                 </OrderContainer>

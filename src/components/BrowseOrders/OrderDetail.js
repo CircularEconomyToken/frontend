@@ -1,15 +1,14 @@
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink } from './OrderDetailElements';
 
-const Order = ({item}) => {
+var orderId = {};
 
-    var orderID = item.orderID;
-    //var orderOwner = item.orderOwner;
-    var productName = item.name;
+const OrderDetail = ({item}) => {
     
+    orderId = item.orderId;
+
     return (
         <Container>
             <Image src = {require('../../images/package.png')}/> 
-
             <Column>
                 <TitleText>Product name </TitleText>
                 <Text> {item.name.toString()} </Text>
@@ -35,12 +34,9 @@ const Order = ({item}) => {
                 <Text> {item.price.toString()} </Text>
             </Column>
 
-
-           
-
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = '/makeOffer'>Make offer</NavBtnLink>
+                    <NavBtnLink to = {{pathname: "/makeOffer", data: item.name.toString()}} >Make offer</NavBtnLink>
                 </NavBtn>
             </Column>
 
@@ -48,4 +44,6 @@ const Order = ({item}) => {
     )
 }
 
-export default Order;
+
+
+export default OrderDetail;
