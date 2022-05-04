@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
@@ -13,6 +14,9 @@ const UpdateOrder = () => {
     useEffect(() => {
         handleContract();
       }, []);
+
+    const { id } = useParams();
+    console.log(id);
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -60,7 +64,7 @@ const UpdateOrder = () => {
         <FormWrap>
           <FormContent>
             <Form  onSubmit={updateOrder}>
-              <FormH1>Make an order</FormH1>
+              <FormH1>Update this order</FormH1>
               <Row>
                 <Column>
                     <FormLabel htmlFor = 'for'>Name</FormLabel>
@@ -103,7 +107,7 @@ const UpdateOrder = () => {
                     <FormInput type = 'number' name = "expirationBlock" placeholder = "Expiration Block" required/>
                 </Column>
               </Row>
-              <FormButton type = 'submit'>order</FormButton>  
+              <FormButton type = 'submit'>Confirm update</FormButton>  
               <Text>{successMsg}</Text>
             </Form>
           </FormContent> 

@@ -58,7 +58,7 @@ const Order = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: "/makeOrder", data: item.orderId}}>Update</NavBtnLink>
+                    <NavBtnLink to = {{pathname: `/updateOrder/${item.orderId}`}}>Update</NavBtnLink>
                 </NavBtn>
             </Column>
             <Column>
