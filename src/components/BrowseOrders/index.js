@@ -19,30 +19,28 @@ const BrowseOrders = () => {
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
-        //const allOrders = [];
+        const allOrders = [];
         var allSellerAddress = contractObj.getAllSellers();
         var userAddr = ls.get('userAddr');
 
         allSellerAddress.then(function(result){
             for(var i=0; i<result.length; i++){
-                //console.log("here" + ls.get('userAddr'));
-                if(JSON.stringify(result[i]) != userAddr){
-                    //console.log(result[i]);
+                if(result[i].toLowerCase() != userAddr.toLowerCase()){
                     var callPromise = contractObj.getOrders(result[i]);
-                    callPromise.then(function(orders){
-                    //console.log(result);
-                    //allOrders.push(orders);
-                    orderOwnerContext.displayName = result[i];
-                    setInitialOrders(orders);
-                    setOrders(orders);
-                });
+                    callPromise.then(function(item){
+                        item.map(i => allOrders.push(i));
+                        showAllOrders(allOrders)
+                    });
+                    
                 }              
             }
         });
+    }
 
-        //console.log(allOrders);
-        //setInitialOrders(allOrders);
-        //setOrders(allOrders);
+    const showAllOrders = (allOrderList) => {
+        var filtered = allOrderList.filter(item => item.status == "active")
+        setInitialOrders(filtered);
+        setOrders(filtered);
     }
 
     const changeCategory = (category) => {
@@ -64,7 +62,6 @@ const BrowseOrders = () => {
       }
 
     useEffect(() => {
-        //getOrders();
         getAllSellers();
       }, []);
 
