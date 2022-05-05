@@ -28,7 +28,7 @@ export const OrderContainer = styled.div`
     margin-bottom: 40px;
 `
 
-export const Title = styled.h3`
+export const Title = styled.h2`
     margin-top: 100px; 
 `
 
