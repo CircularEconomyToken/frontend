@@ -48,7 +48,7 @@ const Navbar = ({toggle}) => {
                 <NavItem>
                   <NavLinks to = 'history'
                    smooth = {true} duration = {500} spy = {true} exact = 'true' offset = {-80} 
-                  >Trade History</NavLinks>
+                  >Order History</NavLinks>
                 </NavItem>
               </NavMenu>
               <NavBtn>

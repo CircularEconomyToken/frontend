@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
-import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
+import {FormContainer, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
     FormButton, Text, Column, Row} from './MakeOrderElements';
 
 
@@ -59,7 +59,7 @@ const MakeOrder = () => {
 
   return (
     <>
-    <Container>
+    <FormContainer>
         <FormWrap>
           <FormContent>
             <Form  onSubmit={makeOrder}>
@@ -111,7 +111,7 @@ const MakeOrder = () => {
             </Form>
           </FormContent> 
         </FormWrap>
-      </Container>
+      </FormContainer>
     </>
   )
 }

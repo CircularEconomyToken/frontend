@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink} from './OrderElements';
-import { Row } from './MakeOrderElements';
+import UpdateOrder from './UpdateOrder';
 
 const Order = ({item}) => {
 
@@ -48,6 +48,11 @@ const Order = ({item}) => {
             <Column>
                 <TitleText> Price </TitleText>
                 <Text> {item.price.toString()} </Text>
+            </Column>
+
+            <Column>
+                <TitleText> Item Description </TitleText>
+                <Text> {item.itemDescription.toString()} </Text>
             </Column>
 
             <Column>
