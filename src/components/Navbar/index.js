@@ -29,7 +29,7 @@ const Navbar = ({toggle}) => {
     <IconContext.Provider value = {{color: '#fff'}}>
       <Nav scrollNav = {scrollNav}>
           <NavbarContainer>
-              <Navlogo to = '/' onClick = {toggleHome}> Circular Economy </Navlogo>
+              <Navlogo to = '/' onClick = {toggleHome}> ReCircle </Navlogo>
               <MobileIcon onClick = {toggle}>
                 <FaBars/>
               </MobileIcon>
@@ -50,6 +50,13 @@ const Navbar = ({toggle}) => {
                    smooth = {true} duration = {500} spy = {true} exact = 'true' offset = {-80} 
                   >Order History</NavLinks>
                 </NavItem>
+
+                <NavItem>
+                  <NavLinks to = 'offerHistory'
+                   smooth = {true} duration = {500} spy = {true} exact = 'true' offset = {-80} 
+                  >Offer History</NavLinks>
+                </NavItem>
+
               </NavMenu>
               <NavBtn>
                 <NavBtnLink to = '/connectWallet'>Connect Wallet</NavBtnLink>

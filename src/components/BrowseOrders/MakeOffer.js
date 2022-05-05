@@ -16,6 +16,7 @@ const MakeOffer = () => {
       }, []);
 
     const { id } = useParams();
+    const { address } = useParams();
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -36,7 +37,7 @@ const MakeOffer = () => {
         var userAddress = ls.get('userAddr');
         var status = "Active";
         var orderId = id;
-        var orderOwner = "0x43d1a4bd481d1e8d90d9e1a7f04e2e3d432164b8";
+        var orderOwner = address;
 
         let offerObj = {"price": price, "usecase": usecase, "earliestBlock": earliestBlock,
         "_address": userAddress, "status": status}; 
