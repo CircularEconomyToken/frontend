@@ -24,8 +24,9 @@ const BrowseOrders = () => {
         const allUniqueAddresses = [];
         
         allSellerAddress.then(function(result){
+            
             for(var i=0; i<result.length; i++){
-                console.log(result[i].buyer);
+                //console.log(result[i].buyer);
                 if(result[i].toLowerCase() != userAddr.toLowerCase()){
                     if (!allUniqueAddresses.includes(result[i])) {
                          allUniqueAddresses.push(result[i]); 
@@ -43,9 +44,11 @@ const BrowseOrders = () => {
             callPromise.then(function(item){
                 item.forEach(i => {
                     if (!allOrders.includes(i)) {
-                        allOrders.push(i);
+                        allOrders.push([address,i]);
                     }
+                    //console.log(allOrders[address][i]);
                     var filtered = allOrders.filter(item => item.status == "active" || item.status == "Active")
+                    console.log(filtered);
                     setInitialOrders(filtered);
                     setOrders(filtered);
                 })

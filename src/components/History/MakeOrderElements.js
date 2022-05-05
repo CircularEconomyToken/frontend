@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-export const Container = styled.div`
+export const FormContainer = styled.div`
     min-height: 692px;
     bottom: 0;
     left: 0;
@@ -113,14 +113,14 @@ export const Column = styled.div`
 export const FormButton = styled.button`
     background: #01bf71;
     padding: 16px 0;
-    width: 380px;
+    width: 180px;
     margin:0 auto;
     justify-content: center;
     align-items: center;
     border: none;
     border-radius: 4px;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
 `
 

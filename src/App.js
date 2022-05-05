@@ -11,6 +11,7 @@ import HistoryCard from './components/History';
 import MakeOrder from './components/History/MakeOrder';
 import BrowseOrders from './components/BrowseOrders';
 import MakeOffer from './components/BrowseOrders/MakeOffer';
+import UpdateOrder from './components/History/UpdateOrder';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         <Route path = "/makeOrder" element = {<MakeOrder/>} exact/>
         <Route path = "/browseOrders" element = {<BrowseOrders/>} exact/>
         <Route path = "/makeOffer" element = {<MakeOffer/>} exact/>
+        <Route path = "/makeOffer/:id" element = {<MakeOffer/>}/>
+        <Route path = "/updateOrder" element = {<UpdateOrder/>} exact/>
+        <Route path = "/updateOrder/:id" element = {<UpdateOrder/>}/>
       </Routes>
       <Footer/>
     </Router>

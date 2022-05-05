@@ -1,10 +1,6 @@
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink } from './OrderDetailElements';
 
-var orderId = {};
-
 const OrderDetail = ({item}) => {
-    
-    orderId = item.orderId;
 
     return (
         <Container>
@@ -36,7 +32,7 @@ const OrderDetail = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: "/makeOffer", data: item.name.toString()}} >Make offer</NavBtnLink>
+                    <NavBtnLink to = {{pathname: `/makeOffer/${item.orderId}`}}> Make offer</NavBtnLink>
                 </NavBtn>
             </Column>
 

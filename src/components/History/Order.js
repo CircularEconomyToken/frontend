@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink} from './OrderElements';
-import { Row } from './MakeOrderElements';
+import UpdateOrder from './UpdateOrder';
 
 const Order = ({item}) => {
 
@@ -51,6 +51,11 @@ const Order = ({item}) => {
             </Column>
 
             <Column>
+                <TitleText> Item Description </TitleText>
+                <Text> {item.itemDescription.toString()} </Text>
+            </Column>
+
+            <Column>
                 <NavBtn onClick={() => {deleteOrder(item.orderId);}}>
                     <NavBtnLink to = {{pathname: ""}}>Delete</NavBtnLink>
                 </NavBtn>
@@ -58,7 +63,7 @@ const Order = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: "/makeOrder", data: item.orderId}}>Update</NavBtnLink>
+                    <NavBtnLink to = {{pathname: `/updateOrder/${item.orderId}`}}>Update</NavBtnLink>
                 </NavBtn>
             </Column>
             <Column>

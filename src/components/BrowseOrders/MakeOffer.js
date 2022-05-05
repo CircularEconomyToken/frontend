@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
     FormButton, Text, Column, Row} from './MakeOfferElements';
-import OrderDetail from './OrderDetail';
-import BrowseOrders from '.';
-//import { render } from '@testing-library/react';
+
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
@@ -15,6 +14,8 @@ const MakeOffer = () => {
     useEffect(() => {
         handleContract();
       }, []);
+
+    const { id } = useParams();
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -33,23 +34,21 @@ const MakeOffer = () => {
         var usecase = data.get("usecase");
         var earliestBlock = data.get("earliestBlock");
         var userAddress = ls.get('userAddr');
-        var status = "active";
+        var status = "Active";
+        var orderId = id;
+        var orderOwner = "0x43d1a4bd481d1e8d90d9e1a7f04e2e3d432164b8";
 
         let offerObj = {"price": price, "usecase": usecase, "earliestBlock": earliestBlock,
-        "_address": userAddress, "status": status};
-
-        console.log(OrderDetail.order);
-        console.log(BrowseOrders.orderOwner);
+        "_address": userAddress, "status": status}; 
        
-        /*var callPromise = contract.addOffer(offerObj, orderOwner, orderId);
+        var callPromise = contract.addOffer(offerObj, orderOwner, orderId);
     
         callPromise.then(function(result){
         setSuccessMsg("Offer is made!");
             console.log(result);
-        });*/
+        });
   }
 
-  //render() { const {data} = this.props.name;
   
 
   return (
@@ -77,7 +76,7 @@ const MakeOffer = () => {
                 </Column>
                 <Column>
                     <FormLabel htmlFor = 'for'>Earliest Block</FormLabel>
-                    <FormInput type = 'text' name = "earliestBlock" placeholder = "Earliest Block" required/>
+                    <FormInput type = 'number' name = "earliestBlock" placeholder = "Earliest Block" required/>
                 </Column>
               </Row>
               <FormButton type = 'submit'>Confirm Offer</FormButton>  
