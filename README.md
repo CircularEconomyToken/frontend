@@ -1,9 +1,13 @@
 # frontend
 use following commands to install the project in vs code-
-npm install react-router-dom
-npm install styled-components
-npm install ethers
+1. npm install react-router-dom
+
+2. npm install styled-components
+
+3. npm install ethers
 
 use these command to build and run the project-
-npm run build
-npm start
+
+4. npm run build
+
+5. npm start
