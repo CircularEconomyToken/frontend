@@ -3,7 +3,7 @@ export const homeObjOne = {
     lightBg: true,
     lightText: false,
     lightTextDesc: false,
-    topLine: 'Circular Economy',
+    topLine: 'Recycle in Circle: Create Circular Economy',
     headline: 'We keep a product in the economic circle and not let it end in a landfill',
     description:  'Get access to automated trade and exchange deals of materials based on the needs and offers',
     buttonLabel: 'Connect wallet',

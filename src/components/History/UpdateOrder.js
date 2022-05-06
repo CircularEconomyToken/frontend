@@ -14,6 +14,7 @@ const UpdateOrder = () => {
     const [result, setOrderInfo ] = useState({});
     const [contract, setContract ] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
+    const [currentState, setState] = useState(null);
 
     useEffect(() => { 
         console.log("here");
@@ -73,9 +74,10 @@ const UpdateOrder = () => {
         });
   }
   
-  const handleChange = evt => {
-    this.setState({ html: evt.target.value });
-  };
+  const handleChange = (newValue) => {
+    currentState = { html: newValue };
+    setState({ currentState });
+  }
 
   return (
     <>
@@ -87,7 +89,8 @@ const UpdateOrder = () => {
               <Row>
                 <Column>
                     <FormLabel htmlFor = 'for'>Name</FormLabel>
-                    <FormInput type = 'text' name = "name" placeholder = {result.name} required />    
+                    <FormInput type = 'text' name = 'name' onChange={(event) => handleChange(event.target.value)} 
+        placeholder = {result.name} required />
                 </Column>
                 <Column>
                     <FormLabel htmlFor = 'for'>Unit</FormLabel>
