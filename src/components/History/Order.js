@@ -51,11 +51,6 @@ const Order = ({item}) => {
             </Column>
 
             <Column>
-                <TitleText> Item Description </TitleText>
-                <Text> {item.itemDescription.toString()} </Text>
-            </Column>
-
-            <Column>
                 <NavBtn onClick={() => {deleteOrder(item.orderId);}}>
                     <NavBtnLink to = {{pathname: ""}}>Delete</NavBtnLink>
                 </NavBtn>
@@ -66,6 +61,13 @@ const Order = ({item}) => {
                     <NavBtnLink to = {{pathname: `/updateOrder/${item.orderId}`}}>Update</NavBtnLink>
                 </NavBtn>
             </Column>
+
+            <Column>
+                <NavBtn>
+                    <NavBtnLink to = {{pathname: `/viewOffers/${item.orderId}`}}>View offers</NavBtnLink>
+                </NavBtn>
+            </Column>
+
             <Column>
                 <Text>{successMsg}</Text>
             </Column>

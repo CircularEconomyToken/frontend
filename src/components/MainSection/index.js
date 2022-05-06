@@ -11,7 +11,7 @@ const MainSection = () => {
             <VideoBg autoPlay loop muted src = {Video} type = 'video/mp4'/>
         </MainBg>
         <MainContent>
-            <MainH1>Circular Economy</MainH1>
+            <MainH1>ReCircle</MainH1>
             <MainP>Give your products a new life</MainP>
             <MainBtnWrapper>
                 <Button to = 'signup' primary = 'true' dark = 'true'>Connect Wallet</Button>

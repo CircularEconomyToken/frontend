@@ -3,65 +3,31 @@ import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import { InfoContainer, InfoWrapper, Title, FilterContainer, Filter, 
-    FilterText, Select, Option, OrderContainer, EmptyView} from './BrowseElements';
-import OrderDetail from './OrderDetail'
+    FilterText, Select, Option, OrderContainer, EmptyView, NavBtn, 
+    NavBtnLink } from './OfferHistoryElements';
+import Order from './OfferDetail'
 
-const BrowseOrders = () => {
+const OfferHistoryCard = () => {
     const [contract, setContract] = useState(null);
     const [initialOrders, setInitialOrders] = useState([]);
     const [orders, setOrders] = useState([]);
     const [currentCategory, setCurrentCategory] = useState(null);
-    const orderOwnerContext = React.createContext('orderOwner');
 
-    const getAllSellers = () => {
+    const getOrders = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
-        var allSellerAddress = contractObj.getAllSellers();
-        var userAddr = ls.get('userAddr');
-        const allUniqueAddresses = [];
         
-        allSellerAddress.then(function(result){
-            
-            for(var i=0; i<result.length; i++){
-                if(result[i].toLowerCase() != userAddr.toLowerCase()){
-                    if (!allUniqueAddresses.includes(result[i])) {
-                         allUniqueAddresses.push(result[i]); 
-                         showAllOrders(contractObj, allUniqueAddresses)
-                    }
-                }            
-            }
+        var userAddr = ls.get('userAddr');
+        var callPromise = contractObj.getOrders(userAddr);
+        callPromise.then(function(result){
+            console.log(result);
+            var filtered = result.filter(item => item.status == "Active" || item.status == "active")
+            setInitialOrders(filtered);
+            setOrders(filtered);
         });
-    }
-
-    function clone(obj) {
-        if (null == obj || "object" != typeof obj) return obj;
-        var copy = obj.constructor();
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-        }
-        return copy;
-    }
-
-    const showAllOrders = (contractObj, allUniqueAddresses) => {
-        const allOrders = [];
-        allUniqueAddresses.forEach(address => {
-            var callPromise = contractObj.getOrders(address);
-            callPromise.then(function(item){
-                item.forEach(i => {
-                    if (!allOrders.includes(i)) {
-                        var temp = clone(i);
-                        temp["address"] = address;
-                        allOrders.push(temp);
-                    }
-                    var filtered = allOrders.filter(item => item.status == "active" || item.status == "Active")
-                    setInitialOrders(filtered);
-                    setOrders(filtered);
-                })
-            });
-       })
     }
 
     const changeCategory = (category) => {
@@ -83,13 +49,13 @@ const BrowseOrders = () => {
       }
 
     useEffect(() => {
-        getAllSellers();
+        getOrders();
       }, []);
 
     return (
         <InfoContainer>
             <InfoWrapper>
-                <Title>Current orders</Title>
+                <Title>History of offers</Title>
                 <FilterContainer>
                     <Filter>
                         <FilterText>Filter by category: </FilterText>
@@ -104,7 +70,7 @@ const BrowseOrders = () => {
                 </FilterContainer>
                 <OrderContainer>
                     {orders.map(item => (
-                        <OrderDetail item = {item} />
+                        <Order item = {item} />
                     ))}
                     <EmptyView/>
                 </OrderContainer>
@@ -113,4 +79,4 @@ const BrowseOrders = () => {
     )
 }
 
-export default BrowseOrders;
+export default OfferHistoryCard;

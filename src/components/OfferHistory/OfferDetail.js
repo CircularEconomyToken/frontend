@@ -1,8 +1,6 @@
-import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink } from './OrderDetailElements';
+import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink } from './OfferDetailElements';
 
-const OrderDetail = ({item}) => {
-
-    console.log(item.address);
+const OfferDetail = ({item}) => {
 
     return (
         <Container>
@@ -34,7 +32,7 @@ const OrderDetail = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: `/makeOffer/${item.address}/${item.orderId}`}}> Make offer</NavBtnLink>
+                    <NavBtnLink to = {{pathname: ""}}> Buy</NavBtnLink>
                 </NavBtn>
             </Column>
 
@@ -44,4 +42,4 @@ const OrderDetail = ({item}) => {
 
 
 
-export default OrderDetail;
+export default OfferDetail;

@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import ContentEditable from 'react-contenteditable'
 
 const UpdateOrder = () => {
-    
+  
     const [result, setOrderInfo ] = useState({});
     const [contract, setContract ] = useState(null);
     const [successMsg, setSuccessMsg] = useState(null);
@@ -73,6 +73,9 @@ const UpdateOrder = () => {
         });
   }
   
+  const handleChange = evt => {
+    this.setState({ html: evt.target.value });
+  };
 
   return (
     <>
@@ -84,7 +87,7 @@ const UpdateOrder = () => {
               <Row>
                 <Column>
                     <FormLabel htmlFor = 'for'>Name</FormLabel>
-                    <FormInput type = 'text' name = 'name' placeholder = {result.name} required />    
+                    <FormInput type = 'text' name = "name" placeholder = {result.name} required />    
                 </Column>
                 <Column>
                     <FormLabel htmlFor = 'for'>Unit</FormLabel>

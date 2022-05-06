@@ -12,7 +12,7 @@ const Sidebar = ({isOpen, toggle}) => {
             <SidebarMenu>
                 <SidebarLink to = 'about' onClick = {toggle}> About </SidebarLink>
                 <SidebarLink to = 'browseOrders' onClick = {toggle}> Browse orders </SidebarLink>
-                <SidebarLink to = 'history' onClick = {toggle}> Trade history </SidebarLink>
+                <SidebarLink to = 'history' onClick = {toggle}> Order history </SidebarLink>
             </SidebarMenu>
         </SidebarWrapper>
         <SideBtnWrapper>
