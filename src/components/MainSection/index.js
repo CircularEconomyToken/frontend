@@ -8,7 +8,7 @@ const MainSection = () => {
   return (
     <MainContainer>
         <MainBg>
-            <VideoBg autoPlay loop muted src = {Video} type = 'video/mp4'/>
+            {/* <VideoBg autoPlay loop muted src = {Video} type = 'video/mp4'/> */}
         </MainBg>
         <MainContent>
             <MainH1>ReCircle</MainH1>
