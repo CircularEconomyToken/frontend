@@ -1,7 +1,7 @@
 import React from 'react'
 import Video from '../../videos/intro.mp4'
 import {MainContainer, MainBg, VideoBg, MainContent, MainH1,
-    MainP, MainBtnWrapper, NavBtn, NavBtnLink} from './MainElements'
+    MainP, MainBtnWrapper, NavBtnLink} from './MainElements'
 import {Button} from '../ButtonElements'
 
 const MainSection = () => {
@@ -13,9 +13,9 @@ const MainSection = () => {
         <MainContent>
             <MainH1>ReCircle</MainH1>
             <MainP>Give your products a new life</MainP>
-            <NavBtn>
+            <MainBtnWrapper>
                 <NavBtnLink to = '/connectWallet' primary = 'true' dark = 'true'>Connect Wallet</NavBtnLink>
-            </NavBtn>
+            </MainBtnWrapper>
         </MainContent>
     </MainContainer>
   )
