@@ -54,7 +54,7 @@ export const NavBtnLink = styled(LinkR)`
     white-space: nowrap;
     padding: 10px 22px;
     color: #010606;
-    font-size: 16px;
+    font-size: 12px;
     outline: none;
     border: none;
     cursor: pointer;

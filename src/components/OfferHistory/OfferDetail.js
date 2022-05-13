@@ -32,7 +32,13 @@ const OfferDetail = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: ""}}> Buy</NavBtnLink>
+                    <NavBtnLink to = {{pathname: ""}}>Delete</NavBtnLink>
+                </NavBtn>
+            </Column>
+
+            <Column>
+                <NavBtn>
+                    <NavBtnLink to = {{pathname: ""}}>Update</NavBtnLink>
                 </NavBtn>
             </Column>
 
