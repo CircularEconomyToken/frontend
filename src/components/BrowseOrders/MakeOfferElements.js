@@ -130,3 +130,10 @@ export const Text = styled.span`
     color: #fff;
     font-size: 14px;
 `
+export const FormTextArea = styled.textarea`
+    padding: 16px 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+`

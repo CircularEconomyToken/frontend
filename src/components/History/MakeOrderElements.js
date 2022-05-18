@@ -96,6 +96,27 @@ export const FormInput = styled.input`
     border-radius: 4px;
 `
 
+export const FormTextArea = styled.textarea`
+    padding: 16px 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+`
+
+export const FormSelect = styled.select`
+    display: flex;
+    flex: 3;
+    margin-top: 10px;
+    align-items: flex-start;
+    padding: 16px 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    min-width: 200px;
+`
+
+export const Option = styled.option``
+
 export const Row = styled.div`
     min-width: 280px;
     display: flex;
