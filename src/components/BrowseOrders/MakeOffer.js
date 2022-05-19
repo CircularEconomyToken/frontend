@@ -4,7 +4,7 @@ import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
-    FormButton, Text, Column, Row} from './MakeOfferElements';
+    FormButton, Text, Column, Row, FormTextArea} from './MakeOfferElements';
 
 
 const MakeOffer = () => {
@@ -69,15 +69,15 @@ const MakeOffer = () => {
               <Row>
                 <Column>
                     <FormLabel htmlFor = 'for'>Price</FormLabel>
-                    <FormInput type = 'number' name = "price" placeholder = "Price" required/>
+                    <FormInput type = 'number' name = "price" min="0" placeholder = "Price" required/>
                 </Column>
                 <Column>
                     <FormLabel htmlFor = 'for'>Use Case</FormLabel>
-                    <FormInput type = 'text' name = "usecase" placeholder = "Usecase" required/>
+                    <FormTextArea type = 'text' name = "usecase" placeholder = "Usecase" required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Earliest Block</FormLabel>
-                    <FormInput type = 'number' name = "earliestBlock" placeholder = "Earliest Block" required/>
+                    <FormLabel htmlFor = 'for'>Earliest Day of Pick Up</FormLabel>
+                    <FormInput type = 'number' name = "earliestBlock" min="1" placeholder = "Number of days" required/>
                 </Column>
               </Row>
               <FormButton type = 'submit'>Confirm Offer</FormButton>  

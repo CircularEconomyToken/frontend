@@ -67,7 +67,7 @@ const HistoryCard = () => {
                             <Option value = "3">Category 3</Option>
                         </Select>
                         <NavBtn>
-                            <NavBtnLink to = '/makeOrder'>Make new order</NavBtnLink>
+                            <NavBtnLink to = '/makeOrder'>Add good/service</NavBtnLink>
                         </NavBtn>
                     </Filter>
                 </FilterContainer>

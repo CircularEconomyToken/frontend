@@ -14,6 +14,7 @@ import MakeOffer from './components/BrowseOrders/MakeOffer';
 import UpdateOrder from './components/History/UpdateOrder';
 import OfferHistoryCard from './components/OfferHistory';
 import ViewOffers from './components/History/ViewOffers';
+import InfoPage from './components/ExtraInfoPages/InfoPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path = "/updateOrder/:id" element = {<UpdateOrder/>}/>
         <Route path = "/offerHistory" element = {<OfferHistoryCard/>} exact/>
         <Route path = "/viewOffers/:id" element = {<ViewOffers/>}/>
+        <Route path = "/info" element = {<InfoPage/>} exact/>
       </Routes>
       <Footer/>
     </Router>

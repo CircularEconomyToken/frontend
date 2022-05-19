@@ -19,36 +19,23 @@ const Footer = () => {
                 <FooterLinksWrapper>
                     <FooterLinkItems>
                         <FooterLinkTitle> About us </FooterLinkTitle>
-                        <FooterLink to = '/connectWallet'>How it works</FooterLink>
-                        <FooterLink to = '/connectWallet'>Testimonials</FooterLink>
-                        <FooterLink to = '/connectWallet'>Careers</FooterLink>
-                        <FooterLink to = '/connectWallet'>Investors</FooterLink>
-                        <FooterLink to = '/connectWallet'>Terms of Service</FooterLink>  
+                        <FooterLink to = '/about'>How it works</FooterLink>
+                        <FooterLink to = '/info'>Careers</FooterLink>
+                        <FooterLink to = '/info'>Terms of Service</FooterLink>  
                     </FooterLinkItems>
                     <FooterLinkItems>
                         <FooterLinkTitle> Contact us </FooterLinkTitle>
-                        <FooterLink to = '/connectWallet'>Contact</FooterLink>
-                        <FooterLink to = '/connectWallet'>Support</FooterLink>
-                        <FooterLink to = '/connectWallet'>Destinations</FooterLink>
-                        <FooterLink to = '/connectWallet'>Sponsorships</FooterLink>
-                        <FooterLink to = '/connectWallet'>Investors</FooterLink> 
+                        <FooterLink to = '/info'>Contact</FooterLink>
+                        <FooterLink to = '/info'>Support</FooterLink>
+                        <FooterLink to = '/info'>Sponsorships</FooterLink> 
                     </FooterLinkItems> 
                 </FooterLinksWrapper> 
                 <FooterLinksWrapper>
                     <FooterLinkItems>
-                        <FooterLinkTitle> Business </FooterLinkTitle>
-                        <FooterLink to = '/connectWallet'>Submit data</FooterLink>
-                        <FooterLink to = '/connectWallet'>Ambassadors</FooterLink>
-                        <FooterLink to = '/connectWallet'>Agency</FooterLink>
-                        <FooterLink to = '/connectWallet'>Influencer</FooterLink>  
-                    </FooterLinkItems>
-                    <FooterLinkItems>
                         <FooterLinkTitle> Features </FooterLinkTitle>
-                        <FooterLink to = '/connectWallet'>Orders</FooterLink>
-                        <FooterLink to = '/connectWallet'>Profile</FooterLink>
-                        <FooterLink to = '/connectWallet'>History</FooterLink>
-                        <FooterLink to = '/connectWallet'>Payment</FooterLink>
-                        <FooterLink to = '/connectWallet'>Return orders</FooterLink>  
+                        <FooterLink to = '/browseOrders'>Browse orders</FooterLink>
+                        <FooterLink to = '/history'>Order history</FooterLink>
+                        <FooterLink to = '/offerHistory'>Offer history</FooterLink>  
                     </FooterLinkItems> 
                 </FooterLinksWrapper> 
             </FooterLinksContainer>
