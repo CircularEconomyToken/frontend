@@ -15,7 +15,7 @@ const BrowseOrders = () => {
 
     const getAllSellers = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
+        var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
@@ -75,8 +75,20 @@ const BrowseOrders = () => {
             var filtered = initialOrders.filter(item => item.categories == 2)
             setOrders(filtered);
             console.log(filtered);
-        } else {
+        } else if (category == "3") {
             var filtered = initialOrders.filter(item => item.categories == 3)
+            setOrders(filtered);
+            console.log(filtered);
+        } else if (category == "4") {
+            var filtered = initialOrders.filter(item => item.categories == 4)
+            setOrders(filtered);
+            console.log(filtered);
+        } else if (category == "5") {
+            var filtered = initialOrders.filter(item => item.categories == 5)
+            setOrders(filtered);
+            console.log(filtered);
+        } else {
+            var filtered = initialOrders.filter(item => item.categories == 6)
             setOrders(filtered);
             console.log(filtered);
         }
@@ -96,9 +108,12 @@ const BrowseOrders = () => {
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">all</Option>
-                            <Option value = "1">Category 1</Option>
-                            <Option value = "2">Category 2</Option>
-                            <Option value = "3">Category 3</Option>
+                            <Option value = "1">Construction</Option>
+                            <Option value = "2">Furniture</Option>
+                            <Option value = "3">Vehicle</Option>
+                            <Option value = "4">Technology</Option>
+                            <Option value = "5">Service</Option>
+                            <Option value = "6">Electronics</Option>
                         </Select>
                     </Filter>
                 </FilterContainer>

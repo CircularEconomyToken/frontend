@@ -26,6 +26,7 @@ const WalletCard = () => {
             .then(result => {
                 accountChangedHandler(result[0]); 
                 ls.set('userAddr', result[0].toString());
+                ls.set('contractAddr', "0x1bEF998c97E2dd4b1A1F1579c94C8098D1FABAA7");
                 setDisable(true);
                 setSuccessMsg("Connected to the wallet successfully!");
             })
@@ -37,6 +38,7 @@ const WalletCard = () => {
 
     const accountChangedHandler = (newAccount) => {
         setDefaultAccount(newAccount);
+        ls.set('userAddr', newAccount.toString());
         getUserBalance(newAccount.toString());
     }
 

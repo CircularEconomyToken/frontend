@@ -5,7 +5,7 @@ import ls from 'local-storage'
 import { InfoContainer, InfoWrapper, Title, FilterContainer, Filter, 
     FilterText, Select, Option, OrderContainer, EmptyView, NavBtn, 
     NavBtnLink } from './HistoryElements';
-import Order from './Order'
+import Offer from './Offer'
 import { useParams } from 'react-router-dom';
 
 const OfferCard = () => {
@@ -19,16 +19,16 @@ const OfferCard = () => {
 
     const getOffers = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
+        var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
         
         var userAddr = ls.get('userAddr');
-        var callPromise = contractObj.getOffers(userAddr);
+        var callPromise = contractObj.getOffers(userAddr, id);
         callPromise.then(function(result){
             console.log(result);
-            var filtered = result.filter(item => item.status == "Active" || item.status == "active")
+            var filtered = result.filter(item => item.status == "Active" || item.status == "active" || item.status == "Picked")
             setInitialOrders(filtered);
             setOrders(filtered);
         });
@@ -38,15 +38,11 @@ const OfferCard = () => {
         if (category == "0") {
             setOrders(initialOrders);
         } else if (category == "1") {
-            var filtered = initialOrders.filter(item => item.categories == 1)
-            setOrders(filtered);
-            console.log(filtered);
-        } else if (category == "2") {
-            var filtered = initialOrders.filter(item => item.categories == 2)
+            var filtered = initialOrders.filter(item => item.status == "Picked")
             setOrders(filtered);
             console.log(filtered);
         } else {
-            var filtered = initialOrders.filter(item => item.categories == 3)
+            var filtered = initialOrders.filter(item => item.status == "Active" || item.status == "active")
             setOrders(filtered);
             console.log(filtered);
         }
@@ -62,20 +58,19 @@ const OfferCard = () => {
                 <Title>History of orders</Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>Filter by category: </FilterText>
+                        <FilterText>Filter by status: </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">all</Option>
-                            <Option value = "1">Category 1</Option>
-                            <Option value = "2">Category 2</Option>
-                            <Option value = "3">Category 3</Option>
+                            <Option value = "1">Picked</Option>
+                            <Option value = "2">Active</Option>
                         </Select>
                         
                     </Filter>
                 </FilterContainer>
                 <OrderContainer>
-                    {orders.map(item => (
-                        <Order item = {item} />
+                    {orders.map((item, index) => (
+                        <Offer item = {item} orderId = {id} offerId = {index}/>
                     ))}
                     <EmptyView/>
                 </OrderContainer>

@@ -29,7 +29,7 @@ const UpdateOrder = () => {
 
   const getOrderInfo = async (e) => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
+    var contractAddr = ls.get('contractAddr');
     const signer = provider.getSigner();
     var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
     setContract(contractObj);

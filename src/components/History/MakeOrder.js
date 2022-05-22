@@ -26,7 +26,7 @@ const MakeOrder = () => {
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
+        var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
@@ -51,7 +51,7 @@ const MakeOrder = () => {
         var condition = data.get("condition");
         var price = data.get("price");
         var location = data.get("location");
-        var buyer = ls.get('userAddr');
+        var buyer = "0x0000000000000000000000000000000000000000";
         var status = "Active";
 
         let myObj = {"orderId": nextOrderId, "name": name, "unit": unit, "categories": categories,

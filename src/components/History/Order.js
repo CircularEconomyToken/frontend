@@ -3,14 +3,39 @@ import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink} from './OrderElements';
 import UpdateOrder from './UpdateOrder';
+import ls from 'local-storage'
 
 const Order = ({item}) => {
 
     const [successMsg, setSuccessMsg] = useState(null);
 
+    const getUnit = (category) => {
+        if (category === "1") return  "Piece";
+        else if (category === "2") return  "KG";
+        else if (category === "3") return  "Ton";
+        else return  "Meter";
+    }
+
+    const getCategory = (category) => {
+        if (category === "1") return  "Construction";
+        else if (category === "2") return  "Furniture";
+        else if (category === "3") return  "Vehicle";
+        else if (category === "4") return  "Technology";
+        else if (category === "5") return  "Service";
+        else return  "Electronics";
+    }
+
+    const getCondition = (category) => {
+        if (category === "1") return  "Brand new";
+        else if (category === "2") return  "Broken";
+        else if (category === "3") return  "Used";
+        else if (category === "4") return  "Vinted";
+        else return  "Refurbished";
+    }
+
     const deleteOrder = (orderId) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        var contractAddr = "0xd181D7c2eF5cF4744fe079A4c89CB5D5CDB29853";
+        var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         
@@ -31,18 +56,18 @@ const Order = ({item}) => {
             </Column>
 
             <Column>
-                <TitleText> Unit </TitleText>
-                <Text> {item.unit.toString()} </Text>
-            </Column>
-
-            <Column>
                 <TitleText> Category </TitleText>
-                <Text> {item.categories.toString()} </Text>
+                <Text> {getCategory(item.categories.toString())} </Text>
             </Column>
 
             <Column>
                 <TitleText> Quantity </TitleText>
-                <Text> {item.quantity.toString()} </Text>
+                <Text> {item.quantity.toString()}{getUnit(item.unit.toString())}</Text>
+            </Column>
+
+            <Column>
+                <TitleText> Condition </TitleText>
+                <Text> {getCondition(item.condition.toString())} </Text>
             </Column>
 
             <Column>
@@ -51,7 +76,7 @@ const Order = ({item}) => {
             </Column>
 
             <Column>
-                <NavBtn onClick={() => {deleteOrder(item.orderId);}}>
+                <NavBtn onClick={() => {deleteOrder(item.orderId)}}>
                     <NavBtnLink to = {{pathname: ""}}>Delete</NavBtnLink>
                 </NavBtn>
             </Column>

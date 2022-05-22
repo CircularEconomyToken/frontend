@@ -15,6 +15,7 @@ import UpdateOrder from './components/History/UpdateOrder';
 import OfferHistoryCard from './components/OfferHistory';
 import ViewOffers from './components/History/ViewOffers';
 import InfoPage from './components/ExtraInfoPages/InfoPage';
+import Shipment from './components/Shipment';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path = "/offerHistory" element = {<OfferHistoryCard/>} exact/>
         <Route path = "/viewOffers/:id" element = {<ViewOffers/>}/>
         <Route path = "/info" element = {<InfoPage/>} exact/>
+        <Route path = "/shipment/:orderOwnerAddress/:orderId/:offerId" element = {<Shipment/>} exact/>
       </Routes>
       <Footer/>
     </Router>
