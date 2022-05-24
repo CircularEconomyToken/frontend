@@ -59,6 +59,7 @@ const BrowseOrders = () => {
                     var filtered = allOrders.filter(item => item.status == "active" || item.status == "Active")
                     setInitialOrders(filtered);
                     setOrders(filtered);
+                    console.log(filtered)
                 })
             });
        })

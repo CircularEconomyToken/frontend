@@ -35,11 +35,11 @@ function Shipment({
         var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
-        // var callPromise = contractObj.confirmShipment(orderOwnerAddress, orderId, offerId);
-        // callPromise.then(function(result) {
-        //     setSuccessMsg("Shipment is confirmed!");
-        //     console.log(result);
-        // });
+        var callPromise = contractObj.confirmShipment(orderOwnerAddress, orderId, offerId);
+        callPromise.then(function(result) {
+            setSuccessMsg("Shipment is confirmed!");
+            console.log(result);
+        });
     }
   
   return (

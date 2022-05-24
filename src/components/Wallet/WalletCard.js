@@ -17,8 +17,6 @@ const WalletCard = () => {
         totalSupply: "-"
     });
 
-  
-
     const connectWalletHandler = async (e) => {
        e.preventDefault();
         if (window.ethereum) { 
@@ -26,7 +24,7 @@ const WalletCard = () => {
             .then(result => {
                 accountChangedHandler(result[0]); 
                 ls.set('userAddr', result[0].toString());
-                ls.set('contractAddr', "0x1bEF998c97E2dd4b1A1F1579c94C8098D1FABAA7");
+                ls.set('contractAddr', "0x9A4EF53D3348C3FCEFad1490a329602DC52Ab040");
                 setDisable(true);
                 setSuccessMsg("Connected to the wallet successfully!");
             })
