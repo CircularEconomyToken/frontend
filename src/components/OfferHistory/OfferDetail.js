@@ -144,7 +144,7 @@ const OfferDetail = ({item}) => {
             {item.status == "Picked" && isConfirmAllowed &&
             <Column>
                 <NavBtn onClick={() => {confirmOffer(item)}}>
-                    <NavBtnLink to = {{pathname: ""}}>Confirm offer</NavBtnLink>
+                    <NavBtnLink to = {{pathname: ""}}>Deposit</NavBtnLink>
                 </NavBtn>
             </Column>
             }

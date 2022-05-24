@@ -37,7 +37,7 @@ function Shipment({
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.confirmShipment(orderOwnerAddress, orderId, offerId);
         callPromise.then(function(result) {
-            setSuccessMsg("Shipment is confirmed!");
+            setSuccessMsg("Item is shipped successfully!");
             console.log(result);
         });
     }
@@ -70,7 +70,7 @@ function Shipment({
                         primary = {primary ? 1 : 0}
                         dark = {dark ? 1 : 0}
                         dark2 = {dark2 ? 1 : 0}
-                        >Buy</NavBtnLink>
+                        >Confirm Shipment</NavBtnLink>
                     </NavBtn>
                     </Row>
                 </TextWrapper>
