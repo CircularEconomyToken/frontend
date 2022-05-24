@@ -5,9 +5,9 @@ import ls from 'local-storage'
 import {Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, Text} from './WalletElements';
 
 const WalletCard = () => {
-    const [disable, setDisable] = React.useState(window.ethereum.isConnected()? true: false);
+    const [disable, setDisable] = useState(false);
+    const [successMsg, setSuccessMsg] = useState(null);
     const [errorMessage, setErrorMessage ] = useState(null);
-    const [successMsg, setSuccessMsg] = React.useState(window.ethereum.isConnected()? "You are connected to the wallet currently!": "");
     const [defaultAccount, setDefaultAccount ] = useState(null);
     const [userBalance, setUserBalance ] = useState(null);
     const [contractInfo, setContractInfo ] = useState({
@@ -16,8 +16,6 @@ const WalletCard = () => {
         tokenSymbol: "-",
         totalSupply: "-"
     });
-
-  
 
     const connectWalletHandler = async (e) => {
        e.preventDefault();
@@ -30,16 +28,15 @@ const WalletCard = () => {
                 setDisable(true);
                 setSuccessMsg("Connected to the wallet successfully!");
             })
-
         } else {
             setErrorMessage('Install MetaMask');
         }
     }
 
     const accountChangedHandler = (newAccount) => {
-        setDefaultAccount(newAccount);
-        ls.set('userAddr', newAccount.toString());
-        getUserBalance(newAccount.toString());
+          setDefaultAccount(newAccount);
+          ls.set('userAddr', newAccount.toString());
+          getUserBalance(newAccount.toString());
     }
 
     const getUserBalance = (address) => {
@@ -53,6 +50,24 @@ const WalletCard = () => {
         window.location.reload();
     }
 
+    const checkWalletConnection = async (e) => {
+        if (window.ethereum) { 
+          window.ethereum.request({ method: 'eth_accounts' }).then(result => {
+            if (result.length === 0) { // MetaMask is locked or the user has not connected any accounts
+              setDisable(false);
+              setSuccessMsg("Please connect to MetaMask wallet");
+            }
+            else {
+              setDisable(true);
+              setSuccessMsg("You are connected to the wallet!");
+            }
+        })
+        } else {
+            setErrorMessage('Not connected with ethereum');
+        }
+    }  
+
+    checkWalletConnection();
     window.ethereum.on('accountsChanged', accountChangedHandler);
     window.ethereum.on('chainChanged', chainChanged);
 

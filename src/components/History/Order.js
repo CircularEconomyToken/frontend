@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
-import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink} from './OrderElements';
-import UpdateOrder from './UpdateOrder';
-import ls from 'local-storage'
+import { Container, Image, Column, TitleText, Text, IconColumn, IconLink} from './OrderElements';
+import ls from 'local-storage';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpdateIcon from '@mui/icons-material/Edit';
+import ViewIcon from '@mui/icons-material/Visibility';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Order = ({item}) => {
-
-    const [successMsg, setSuccessMsg] = useState(null);
 
     const getUnit = (category) => {
         if (category === "1") return  "Piece";
@@ -41,13 +43,19 @@ const Order = ({item}) => {
         
         var callPromise = contractObj.deleteOrder(orderId);
         callPromise.then(function(result){
-            setSuccessMsg("Order is deleted!");
+            toast.success("Order is deleted!");
             console.log(result);
+            setTimeout(function() {
+                window.location='/history'
+              }, 4000);
         });
     }
 
     return (
         <Container>
+            <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
+            newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+
             <Image src = {require('../../images/package.png')}/> 
 
             <Column>
@@ -75,27 +83,25 @@ const Order = ({item}) => {
                 <Text> {item.price.toString()} </Text>
             </Column>
 
-            <Column>
-                <NavBtn onClick={() => {deleteOrder(item.orderId)}}>
-                    <NavBtnLink to = {{pathname: ""}}>Delete</NavBtnLink>
-                </NavBtn>
-            </Column>
+            <IconColumn> 
+                <IconLink to={{pathname: ""}}>
+                    <DeleteIcon color='primary' onClick={() => {deleteOrder(item.orderId)}}/>
+                </IconLink>
+            </IconColumn>
 
-            <Column>
-                <NavBtn>
-                    <NavBtnLink to = {{pathname: `/updateOrder/${item.orderId}`}}>Update</NavBtnLink>
-                </NavBtn>
-            </Column>
+            <IconColumn> 
+                <IconLink to = {{pathname: `/updateOrder/${item.orderId}`}}>
+                    <UpdateIcon color='primary' />
+                </IconLink>     
+            </IconColumn>
 
-            <Column>
-                <NavBtn>
-                    <NavBtnLink to = {{pathname: `/viewOffers/${item.orderId}`}}>View offers</NavBtnLink>
-                </NavBtn>
-            </Column>
+            <IconColumn>
+                <IconLink to = {{pathname: `/viewOffers/${item.orderId}`}}>
+                    <ViewIcon color='primary'/>
+                </IconLink>
+            </IconColumn>
 
-            <Column>
-                <Text>{successMsg}</Text>
-            </Column>
+            
             
         </Container>
     )

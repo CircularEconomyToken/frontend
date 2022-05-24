@@ -4,7 +4,8 @@ import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {FormContainer, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
     FormButton, Text, Column, Row, FormTextArea, FormSelect, Option} from './MakeOrderElements';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const categories = [
   { label: "Construction", value: 1 },
@@ -18,7 +19,6 @@ const categories = [
 const MakeOrder = () => {
     const [contract, setContract ] = useState(null);
     const [nextOrderId, setNextOrderId ] = useState(null);
-    const [successMsg, setSuccessMsg] = useState(null);
 
     useEffect(() => {
         handleContract();
@@ -61,13 +61,18 @@ const MakeOrder = () => {
         var callPromise = contract.addOrder(myObj);
     
         callPromise.then(function(result){
-        setSuccessMsg("Order is made!");
             console.log(result);
+            toast.success("Order is made!");
+            setTimeout(function() {
+              window.location='/history'
+            }, 5000);
         });
   }
 
   return (
     <>
+    <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
+    newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <FormContainer>
         <FormWrap>
           <FormContent>
@@ -139,7 +144,6 @@ const MakeOrder = () => {
                 </Column>
               </Row>
               <FormButton type = 'submit'>Add</FormButton>  
-              <Text>{successMsg}</Text>
             </Form>
           </FormContent> 
         </FormWrap>

@@ -132,17 +132,45 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "orderOwner",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
-				"name": "OrderID",
+				"name": "oId",
 				"type": "uint256"
 			},
 			{
-				"internalType": "address",
-				"name": "seller",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
 			}
 		],
-		"name": "buy",
+		"name": "confirmOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "orderOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
+			}
+		],
+		"name": "confirmShipment",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -487,6 +515,24 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "oId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offId",
+				"type": "uint256"
+			}
+		],
+		"name": "pickOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

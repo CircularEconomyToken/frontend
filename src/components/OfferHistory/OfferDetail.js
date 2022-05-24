@@ -87,7 +87,7 @@ const OfferDetail = ({item}) => {
             </Column>
 
             <Column>
-                <TitleText> Earliest Block </TitleText>
+                <TitleText> Earliest Day of Pick Up </TitleText>
                 <Text> {item.earliestBlock.toString()} </Text>
             </Column>
 
@@ -104,7 +104,7 @@ const OfferDetail = ({item}) => {
             {item.status == "Picked" &&
             <Column>
                 <NavBtn onClick={() => {confirmOffer(item)}}>
-                    <NavBtnLink to = {{pathname: ""}}>Confirm offer</NavBtnLink>
+                    <NavBtnLink to = {{pathname: ""}}>Confirm Buy</NavBtnLink>
                 </NavBtn>
             </Column>
             }

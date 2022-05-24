@@ -5,11 +5,12 @@ import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, 
     FormButton, Text, Column, Row, FormTextArea} from './MakeOfferElements';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+    
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
-    const [successMsg, setSuccessMsg] = useState(null);
 
     useEffect(() => {
         handleContract();
@@ -24,7 +25,6 @@ const MakeOffer = () => {
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         setContract(contractObj);
-        
     }
 
     const makeOffer = async (e) => {
@@ -45,16 +45,18 @@ const MakeOffer = () => {
         var callPromise = contract.addOffer(offerObj, orderOwner, orderId);
     
         callPromise.then(function(result){
-        setSuccessMsg("Offer is made!");
             console.log(result);
+            toast.success("Offer is made!");
+            setTimeout(function() {
+              window.location='/offerHistory'
+            }, 5000);
         });
   }
 
-  
-
   return (
     <>
-
+    <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
+    newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <Container>
     
         <FormWrap>
@@ -81,7 +83,6 @@ const MakeOffer = () => {
                 </Column>
               </Row>
               <FormButton type = 'submit'>Confirm Offer</FormButton>  
-              <Text>{successMsg}</Text>
             </Form>
           </FormContent> 
         </FormWrap>
