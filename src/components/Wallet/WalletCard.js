@@ -6,7 +6,7 @@ import {Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInp
 
 const WalletCard = () => {
     const [disable, setDisable] = useState(false);
-    const [successMsg, setSuccessMsg] = useState(null);
+    const [successMsg, setSuccessMsg] = useState("Please connect to Metamask wallet");
     const [errorMessage, setErrorMessage ] = useState(null);
     const [defaultAccount, setDefaultAccount ] = useState(null);
     const [userBalance, setUserBalance ] = useState(null);
@@ -77,9 +77,10 @@ const WalletCard = () => {
         <FormWrap>
           <FormContent>
             <Form action = '#' onSubmit={connectWalletHandler}>
-              <FormH1>Connect to your wallet</FormH1>
-              <FormButton color ='#01bf71' disabled={disable}>Connect</FormButton>
               <Text>{successMsg}{errorMessage}</Text>
+              <Text></Text>
+              <FormButton color ='#01bf71' disabled={disable}>Connect</FormButton>
+              <Text>If you have multiple accounts, you can switch account in Metamask wallet</Text>
               {/*<Text> Your address: { defaultAccount }</Text>
               <Text> Your balance: { userBalance }</Text>*/}
             </Form>
