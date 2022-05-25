@@ -107,7 +107,7 @@ const OfferHistoryCard = () => {
       }, []);
 
     return (
-        <InfoContainer>
+        <InfoContainer className='offerHistory'>
             <InfoWrapper>
                 <Title>History of offers</Title>
                 <FilterContainer>

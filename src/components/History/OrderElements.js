@@ -67,3 +67,27 @@ export const NavBtnLink = styled(LinkR)`
         color: #010606;
     }
 `
+
+export const IconColumn = styled.div`
+    width: 80px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+`
+export const IconLink = styled(LinkR)`
+    border-radius: 20px;
+    white-space: nowrap;
+    padding: 5px 5px;
+    color: #010606;
+    font-size: 12px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none
+
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        background: #dbbea1ff;
+        color: #010606;
+    }
+`

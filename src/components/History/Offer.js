@@ -35,7 +35,7 @@ const Offer = ({item, orderId, offerId}) => {
             </Column>
 
             <Column>
-                <TitleText> Earliest Block </TitleText>
+                <TitleText> Earliest Day of Pick Up </TitleText>
                 <Text> {item.earliestBlock.toString()} </Text>
             </Column>
 

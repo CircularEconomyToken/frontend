@@ -50,7 +50,7 @@ function Shipment({
                 <Column1>
                 <TextWrapper>
                     <Row>
-                    <Heading lightText = 'false'>Shipment details</Heading>
+                    <Heading lightText = 'false'>Have you received the delivery?</Heading>
                     <FormLabel htmlFor = 'for'>Your order: {orderName}</FormLabel>
                     <FormLabel htmlFor = 'for'>Category: {orderCategory}</FormLabel>
                     <FormLabel htmlFor = 'for'>Condition: {orderCondition}</FormLabel>
@@ -70,7 +70,7 @@ function Shipment({
                         primary = {primary ? 1 : 0}
                         dark = {dark ? 1 : 0}
                         dark2 = {dark2 ? 1 : 0}
-                        >Confirm Shipment</NavBtnLink>
+                        >Confirm Receival</NavBtnLink>
                     </NavBtn>
                     </Row>
                 </TextWrapper>
