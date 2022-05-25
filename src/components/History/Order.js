@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
-import { Container, Image, Column, TitleText, Text, IconColumn, IconLink} from './OrderElements';
+import { Container, Image, Column, TitleText, Text, IconColumn, IconLink, NavBtn, NavBtnLink} from './OrderElements';
 import ls from 'local-storage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Edit';
@@ -83,23 +83,26 @@ const Order = ({item}) => {
                 <Text> {item.price.toString()} </Text>
             </Column>
 
+            <Column>
+                <NavBtn>
+                    <NavBtnLink to = {{pathname: `/viewOffers/${item.orderId}`}}>View offers</NavBtnLink>
+                </NavBtn>
+            </Column>
+
+
             <IconColumn> 
                 <IconLink to={{pathname: ""}}>
-                    <DeleteIcon color='primary' onClick={() => {deleteOrder(item.orderId)}}/>
+                    <DeleteIcon color='success' onClick={() => {deleteOrder(item.orderId)}}/>
                 </IconLink>
             </IconColumn>
 
             <IconColumn> 
                 <IconLink to = {{pathname: `/updateOrder/${item.orderId}`}}>
-                    <UpdateIcon color='primary' />
+                    <UpdateIcon color='success' />
                 </IconLink>     
             </IconColumn>
 
-            <IconColumn>
-                <IconLink to = {{pathname: `/viewOffers/${item.orderId}`}}>
-                    <ViewIcon color='primary'/>
-                </IconLink>
-            </IconColumn>
+            
 
             
             
