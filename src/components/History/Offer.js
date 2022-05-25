@@ -15,7 +15,7 @@ const Offer = ({item, orderId, offerId}) => {
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.pickOffer(orderId, offerId);
-        callPromise.then(function(result){
+        callPromise.then(function(result) {
             setSuccessMsg("Offer is picked!");
             console.log(result);
         });
