@@ -30,7 +30,7 @@ const OrderDetail = ({item}) => {
         <Container>
             <Image src = {require('../../images/package.png')}/> 
             <Column>
-                <TitleText>Product name </TitleText>
+                <TitleText>Item name </TitleText>
                 <Text> {item.name.toString()} </Text>
             </Column>
 

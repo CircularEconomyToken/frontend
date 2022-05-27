@@ -83,7 +83,7 @@ const Order = ({item}) => {
             <Image src = {require('../../images/package.png')}/> 
 
             <Column>
-                <TitleText> Name </TitleText>
+                <TitleText> Item name </TitleText>
                 <Text> {item.name.toString()} </Text>
             </Column>
 

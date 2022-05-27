@@ -8,7 +8,7 @@ import ls from 'local-storage'
 
 const Offer = ({item, orderId, offerId, name}) => {
 
-    console.log(name);
+    const [buttonText, setText] = React.useState((item.status == "Picked")? "Already picked": "Pick offer");
 
     const pickOffer = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -60,13 +60,12 @@ const Offer = ({item, orderId, offerId, name}) => {
                 <Text> {item.status.toString()} </Text>
             </Column> 
 
-            {(item.status == "Active" || item.status == "active") &&
             <Column>
-                <NavBtn onClick={() => {pickOffer()}}>
-                    <NavBtnLink to = {{pathname: ""}}>Pick offer</NavBtnLink>
+                <NavBtn onClick={(item.status != "Picked")? () => {pickOffer()}: ""}>
+                    <NavBtnLink to = {{pathname: ""}}>{buttonText}</NavBtnLink>
                 </NavBtn>
             </Column>
-            }
+            
             
         </Container>
     )

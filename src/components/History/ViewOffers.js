@@ -22,7 +22,7 @@ const OfferCard = () => {
         var contractAddr = ls.get('contractAddr');
         const signer = provider.getSigner();
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
-        setContract(contractObj);
+        //setContract(contractObj);
         
         var userAddr = ls.get('userAddr');
         var callPromise = contractObj.getOffers(userAddr, id);

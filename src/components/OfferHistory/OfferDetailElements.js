@@ -20,15 +20,15 @@ export const Image = styled.img`
 
 export const TitleText = styled.p`
     font-size: 12px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: ${({ lightText }) => (lightText ? '#f7f8fa ' : '#010606')};
 `
 
 export const Text = styled.p`
     margin-top: 5px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: ${({ lightText }) => (lightText ? '#f7f8fa ' : '#010606')};
 `
 

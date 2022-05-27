@@ -104,9 +104,8 @@ const OfferDetail = ({item}) => {
             <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
             newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
 
-            <Image src = {require('../../images/package.png')}/> 
             <Column>
-                <TitleText> Order name </TitleText>
+                <TitleText> Item name </TitleText>
                 <Text> {item.orderName.toString()} </Text>
             </Column> 
 
