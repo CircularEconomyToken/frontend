@@ -108,7 +108,7 @@ const BrowseOrders = () => {
                         <FilterText>Filter by category: </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
-                            <Option value = "0">all</Option>
+                            <Option value = "0">All categories</Option>
                             <Option value = "1">Construction</Option>
                             <Option value = "2">Furniture</Option>
                             <Option value = "3">Vehicle</Option>

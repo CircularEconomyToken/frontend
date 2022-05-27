@@ -7,6 +7,8 @@ import ls from 'local-storage'
 import { useParams } from 'react-router-dom';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Shipment({
     primary,
@@ -24,8 +26,6 @@ function Shipment({
     const [orderCategory, setOrderCategory] = useState(ls.get('orderCategory'));
     const [offerPrice, setOfferPrice] = useState(ls.get('offerPrice'));
     const [offerUsecase, setOfferUsecase] = useState(ls.get('offerUsecase'));
-    const [successMsg, setSuccessMsg] = useState(null);
-
     const { orderOwnerAddress } = useParams();
     const { orderId } = useParams();
     const { offerId } = useParams();
@@ -37,13 +37,15 @@ function Shipment({
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.confirmShipment(orderOwnerAddress, orderId, offerId);
         callPromise.then(function(result) {
-            setSuccessMsg("Item is shipped successfully!");
+            toast.success("Item delivery is confirmed!");
             console.log(result);
         });
     }
   
   return (
     <>
+    <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
+            newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <InfoContainer > 
         <InfoWrapper>
             <InfoRow >
@@ -59,7 +61,7 @@ function Shipment({
                     <FormLabel htmlFor = 'for'>Location: {orderLocation}</FormLabel>
                     <FormLabel htmlFor = 'for'>Your offered price: {offerPrice}</FormLabel>
                     <EmptyView/>
-                    <FormLabel>{successMsg}</FormLabel>
+                    
                     <NavBtn onClick={() => {confirmShipment()}}>
                         <NavBtnLink to = '' 
                         smooth = {true}

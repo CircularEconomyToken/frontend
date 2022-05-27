@@ -13,7 +13,7 @@ const OfferDetail = ({item}) => {
     const [contract, setContract] = useState(null);
     const [isApproveAllowed, setIsApproveAllowed] = useState(false);
     const [isConfirmAllowed, setIsConfirmAllowed] = useState(false);
-    const [successMsg, setSuccessMsg] = useState(null);
+    
     let navigate = useNavigate(); 
 
     useEffect(() => {
@@ -81,7 +81,6 @@ const OfferDetail = ({item}) => {
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.confirmOffer(item.orderOwnerAddress, item.orderId, item.offerId);
         callPromise.then(function(result) {
-            //setSuccessMsg("Offer is confirmed!");
             toast.success("Deposit is confirmed!");
             ls.set('orderName', item.orderName);
             ls.set('orderPrice', item.orderPrice);
@@ -156,10 +155,6 @@ const OfferDetail = ({item}) => {
                 </NavBtn>
             </Column>
             }
-
-            <Column>
-                <Text>{successMsg}</Text>
-            </Column>
 
         </Container>
     )

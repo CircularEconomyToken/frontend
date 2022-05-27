@@ -9,12 +9,14 @@ import {
 } from './MakeOrderElements';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const UpdateOrder = () => {
 
   const [result, setOrderInfo] = useState({});
   const [contract, setContract] = useState(null);
-  const [successMsg, setSuccessMsg] = useState(null);
 
   useEffect(() => {
     getOrderInfo();
@@ -68,13 +70,18 @@ const UpdateOrder = () => {
     var callPromise = contract.updateOrder(myObj);
 
     callPromise.then(function (result) {
-      setSuccessMsg("Order is updated!");
+      toast.success("Order is updated!");
       console.log(result);
+      setTimeout(function() {
+        window.location='/history'
+      }, 5000);
     });
   }
 
   return (
     <>
+    <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
+            newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
       <FormContainer>
         <FormWrap>
           <FormContent>
@@ -150,7 +157,6 @@ const UpdateOrder = () => {
                 </Column>
               </Row>
               <FormButton type='submit'>Confirm update</FormButton>
-              <Text>{successMsg}</Text>
             </Form>
           </FormContent>
         </FormWrap>
