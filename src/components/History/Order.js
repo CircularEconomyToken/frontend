@@ -5,11 +5,31 @@ import { Container, Image, Column, TitleText, Text, IconColumn, IconLink, NavBtn
 import ls from 'local-storage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpdateIcon from '@mui/icons-material/Edit';
-import ViewIcon from '@mui/icons-material/Visibility';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Order = ({item}) => {
+
+    const [orders, setOrders] = useState([]);    
+    const [contract, setContract] = useState(null);
+    const [buttonText, setText] = useState("No offer yet");
+
+    const getOffers = () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        var contractAddr = ls.get('contractAddr');
+        const signer = provider.getSigner();
+        var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
+        //setContract(contractObj);
+        
+        var userAddr = ls.get('userAddr');
+        var callPromise = contractObj.getOffers(userAddr, item.orderId);
+        callPromise.then(function(result){
+            //console.log(result);
+            setOrders(result);
+            if (result.length != 0) setText("View offers "+ "(" + result.length + ")");
+            else setText("No offer yet");
+        });   
+    }
 
     const getUnit = (category) => {
         if (category === "1") return  "Piece";
@@ -51,6 +71,10 @@ const Order = ({item}) => {
         });
     }
 
+    useEffect(() => {
+        getOffers();
+      }, []);
+
     return (
         <Container>
             <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
@@ -59,7 +83,7 @@ const Order = ({item}) => {
             <Image src = {require('../../images/package.png')}/> 
 
             <Column>
-                <TitleText> Name </TitleText>
+                <TitleText> Item name </TitleText>
                 <Text> {item.name.toString()} </Text>
             </Column>
 
@@ -85,7 +109,8 @@ const Order = ({item}) => {
 
             <Column>
                 <NavBtn>
-                    <NavBtnLink to = {{pathname: `/viewOffers/${item.orderId}`}}>View offers</NavBtnLink>
+                    <NavBtnLink to = {(orders.length == 0)? {pathname: ""}: {pathname: `/viewOffers/${(item.name)}/${item.orderId}`}}>
+                     {buttonText} </NavBtnLink>
                 </NavBtn>
             </Column>
 
@@ -101,10 +126,6 @@ const Order = ({item}) => {
                     <UpdateIcon color='success' />
                 </IconLink>     
             </IconColumn>
-
-            
-
-            
             
         </Container>
     )

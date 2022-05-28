@@ -107,7 +107,7 @@ const OfferHistoryCard = () => {
       }, []);
 
     return (
-        <InfoContainer className='offerHistory'>
+        <InfoContainer>
             <InfoWrapper>
                 <Title>History of offers</Title>
                 <FilterContainer>
@@ -115,9 +115,9 @@ const OfferHistoryCard = () => {
                         <FilterText>Filter by status: </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
-                            <Option value = "0">all</Option>
-                            <Option value = "1">Picked</Option>
-                            <Option value = "2">Active</Option>
+                            <Option value = "0">All offers</Option>
+                            <Option value = "1">Picked offers</Option>
+                            <Option value = "2">Active offers</Option>
                         </Select>
                     </Filter>
                 </FilterContainer>

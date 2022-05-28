@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import { Container, Image, Column, TitleText, Text, NavBtn, NavBtnLink} from './OrderElements';
-import UpdateOrder from './UpdateOrder';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ls from 'local-storage'
 
-const Offer = ({item, orderId, offerId}) => {
+const Offer = ({item, orderId, offerId, name}) => {
 
-    const [successMsg, setSuccessMsg] = useState(null);
+    const [buttonText, setText] = React.useState((item.status == "Picked")? "Already picked": "Pick offer");
 
     const pickOffer = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -16,7 +17,7 @@ const Offer = ({item, orderId, offerId}) => {
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.pickOffer(orderId, offerId);
         callPromise.then(function(result) {
-            setSuccessMsg("Offer is picked!");
+            toast.success("Offer is picked!");
             console.log(result);
         });
     }
@@ -25,9 +26,19 @@ const Offer = ({item, orderId, offerId}) => {
         console.log(item);
       }, []);
 
-    return (
+    return(
+    
         <Container>
+
+            <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
+            newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+
             <Image src = {require('../../images/package.png')}/> 
+
+            <Column>
+                <TitleText> Item name </TitleText>
+                <Text> {name} </Text>
+            </Column>
 
              <Column>
                 <TitleText> Usecase </TitleText>
@@ -49,17 +60,12 @@ const Offer = ({item, orderId, offerId}) => {
                 <Text> {item.status.toString()} </Text>
             </Column> 
 
-            {(item.status == "Active" || item.status == "active") &&
             <Column>
-                <NavBtn onClick={() => {pickOffer()}}>
-                    <NavBtnLink to = {{pathname: ""}}>Pick offer</NavBtnLink>
+                <NavBtn onClick={(item.status != "Picked")? () => {pickOffer()}: ""}>
+                    <NavBtnLink to = {{pathname: ""}}>{buttonText}</NavBtnLink>
                 </NavBtn>
             </Column>
-            }
-
-            <Column>
-                <Text>{successMsg}</Text>
-            </Column>
+            
             
         </Container>
     )

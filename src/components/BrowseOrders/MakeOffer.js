@@ -7,17 +7,26 @@ import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput,
     FormButton, Text, Column, Row, FormTextArea} from './MakeOfferElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-    
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
+    const [result, setOrderInfo] = useState({});
+    //const [field, setValue] = useState(null);
 
     useEffect(() => {
         handleContract();
+        getOrderInfo();
       }, []);
 
     const { id } = useParams();
     const { address } = useParams();
+
+    const { register, handleSubmit, reset, setValue, getValues, errors, formState } = useForm({
+      resolver: yupResolver()
+    });
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -53,24 +62,38 @@ const MakeOffer = () => {
         });
   }
 
+
+  const getOrderInfo = async (e) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    var contractAddr = ls.get('contractAddr');
+    const signer = provider.getSigner();
+    var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
+    setContract(contractObj);
+    var orderOwner = address;
+    
+    var callPromise = contractObj.getOrder(orderOwner, id);
+    callPromise.then(function (result) {
+      const fields = ['name', 'unit', 'categories', 'quantity', 'itemDescription', 'condition', 'price', 'location', 'expirationBlock'];
+      fields.forEach(field => setValue(field, result[field]));
+      setOrderInfo(result);
+      console.log(result);
+    });
+  }
+
   return (
     <>
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
     newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <Container>
-    
+        
         <FormWrap>
           <FormContent>
             <Form  onSubmit={makeOffer}>
-              <Row>
-              <Column>
-                
-              </Column>
-              </Row>
-              <FormH1>Make an offer</FormH1>
-              <Row>
+            <FormH1>Make an offer</FormH1>
+
+            <Row>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Price</FormLabel>
+                    <FormLabel htmlFor = 'for'>Offer Price</FormLabel>
                     <FormInput type = 'number' name = "price" min="0" placeholder = "Price" required/>
                 </Column>
                 <Column>
@@ -82,7 +105,58 @@ const MakeOffer = () => {
                     <FormInput type = 'number' name = "earliestBlock" min="1" placeholder = "Number of days" required/>
                 </Column>
               </Row>
-              <FormButton type = 'submit'>Confirm Offer</FormButton>  
+
+            <Row>
+                <Column>
+                  <FormLabel htmlFor='for'>Product name</FormLabel>
+                  <FormInput type='text' name='name' value={result.name || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Unit</FormLabel>
+                  <FormInput type='text' name='unit' value={result.unit || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Categories</FormLabel>
+                  <FormInput type='number' name='categories' value={result.categories || ''} />
+                </Column>
+              </Row>
+              <Row>
+                <Column>
+                  <FormLabel htmlFor='for'>Quantity</FormLabel>
+                  <FormInput type='number' name='quantity' value={result.quantity || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Item Description</FormLabel>
+                  <FormInput type='text' name='itemDescription'value={result.itemDescription || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Condition</FormLabel>
+                  <FormInput type='number' name='condition' value={result.condition || ''} />
+                </Column>
+              </Row>
+              <Row>
+                <Column>
+                  <FormLabel htmlFor='for'>Order Price</FormLabel>
+                  <FormInput type='number' name='price' value={result.price || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Location</FormLabel>
+                  <FormInput type='text' name='location' value={result.location || ''} />
+                </Column>
+                <Column>
+                  <FormLabel htmlFor='for'>Expiration Block</FormLabel>
+                  <FormInput type='number' name='expirationBlock' value={result.expirationBlock || ''} />
+                </Column>
+                </Row>
+              
+          
+
+              
+              
+              
+              <FormButton type = 'submit'>Confirm Offer</FormButton> 
+              
+
             </Form>
           </FormContent> 
         </FormWrap>

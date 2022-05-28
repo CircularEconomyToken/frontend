@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<Home/>} exact/>
         <Route path = "/connectWallet" element = {<ConnectPage/>} exact/>
-        <Route path = "/about" element = {<InfoSection  { ...homeObjOne }/>} exact/>
+        <Route path = "/about" element = {<InfoSection  { ...homeObjTwo }/>} exact/>
         <Route path = "/discover" element = {<InfoSection  { ...homeObjTwo }/>} exact/>
         <Route path = "/services" element = {<InfoSection  { ...homeObjThree }/>} exact/>
         <Route path = "/history" element = {<HistoryCard/>} exact/>
@@ -36,7 +36,7 @@ function App() {
         <Route path = "/updateOrder" element = {<UpdateOrder/>} exact/>
         <Route path = "/updateOrder/:id" element = {<UpdateOrder/>}/>
         <Route path = "/offerHistory" element = {<OfferHistoryCard/>} exact/>
-        <Route path = "/viewOffers/:id" element = {<ViewOffers/>}/>
+        <Route path = "/viewOffers/:name/:id" element = {<ViewOffers/>}/>
         <Route path = "/info" element = {<InfoPage/>} exact/>
         <Route path = "/shipment/:orderOwnerAddress/:orderId/:offerId" element = {<Shipment/>} exact/>
       </Routes>

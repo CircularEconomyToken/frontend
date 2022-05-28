@@ -5,7 +5,7 @@ export const InfoContainer = styled.div`
     color: #fff;
     background: red;
     background: ${({ lightBg }) => (lightBg ? '#E1E1E1' : '#010606')};
-
+    min-height: 360px;
     @media screen and (max-width: 768px) {
         padding: 100px 0;
     }
@@ -99,4 +99,11 @@ export const NavBtnLink = styled(LinkR)`
         background: #dbbea1ff;
         color: #010606;
     }
+`
+
+export const Text = styled.span`
+    text-align: center;
+    margin-top: 24px;
+    color: #000;
+    font-size: 14px;
 `

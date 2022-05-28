@@ -5,13 +5,15 @@ import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import erc20abiApprove from '../../erc20abiApprove.json';
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OfferDetail = ({item}) => {
 
     const [contract, setContract] = useState(null);
     const [isApproveAllowed, setIsApproveAllowed] = useState(false);
     const [isConfirmAllowed, setIsConfirmAllowed] = useState(false);
-    const [successMsg, setSuccessMsg] = useState(null);
+    
     let navigate = useNavigate(); 
 
     useEffect(() => {
@@ -68,6 +70,7 @@ const OfferDetail = ({item}) => {
             console.log("approved", result);
             setIsApproveAllowed(false);
             setIsConfirmAllowed(result);
+            toast.success("Offer is approved!");
         });
     }
 
@@ -78,7 +81,7 @@ const OfferDetail = ({item}) => {
         var contractObj = new ethers.Contract(contractAddr, erc20abi, signer);
         var callPromise = contractObj.confirmOffer(item.orderOwnerAddress, item.orderId, item.offerId);
         callPromise.then(function(result) {
-            setSuccessMsg("Offer is confirmed!");
+            toast.success("Deposit is confirmed!");
             ls.set('orderName', item.orderName);
             ls.set('orderPrice', item.orderPrice);
             ls.set('orderQuantity', item.orderQuantity);
@@ -97,9 +100,12 @@ const OfferDetail = ({item}) => {
 
     return (
         <Container>
-            <Image src = {require('../../images/package.png')}/> 
+
+            <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
+            newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+
             <Column>
-                <TitleText> Order name </TitleText>
+                <TitleText> Item name </TitleText>
                 <Text> {item.orderName.toString()} </Text>
             </Column> 
 
@@ -148,10 +154,6 @@ const OfferDetail = ({item}) => {
                 </NavBtn>
             </Column>
             }
-
-            <Column>
-                <Text>{successMsg}</Text>
-            </Column>
 
         </Container>
     )
