@@ -117,13 +117,13 @@ const Order = ({item}) => {
 
             <IconColumn> 
                 <IconLink to={{pathname: ""}}>
-                    <DeleteIcon color='success' onClick={() => {deleteOrder(item.orderId)}}/>
+                    <DeleteIcon style={{ color: '#01bf71' }} onClick={() => {deleteOrder(item.orderId)}}/>
                 </IconLink>
             </IconColumn>
 
             <IconColumn> 
                 <IconLink to = {{pathname: `/updateOrder/${item.orderId}`}}>
-                    <UpdateIcon color='success' />
+                    <UpdateIcon style={{ color: '#01bf71' }} />
                 </IconLink>     
             </IconColumn>
             

@@ -11,7 +11,7 @@ export const Container = styled.div`
     padding-bottom: 120px;
     z-index: 0;
     overflow: hidden;
-    background: #01bf71;
+    background: #000;
     /* linear-gradient(
         108deg,
         rgba(1, 147, 86, 1) 0%,
@@ -56,14 +56,14 @@ export const FormContent = styled.div`
 `
 
 export const Form = styled.form`
-   background: #010101;
+   background: #fff;
    max-width: 850px;
    height: auto;
    width: 100%;
    z-index:1;
    display: grid;
    margin: 0 auto;
-   padding: 80px 32px;
+   padding: 40px 32px;
    border-radius: 4px;
    display: flex;
    flex-direction: column;
@@ -75,8 +75,8 @@ export const Form = styled.form`
 `
 
 export const FormH1 = styled.h1`
-    margin-bottom: 40px;
-    color: #fff;
+    margin-bottom: 25px;
+    color: #000;
     font-size: 20px;
     font-weight: 400;
     text-align: center;
@@ -112,8 +112,8 @@ export const Column = styled.div`
 
 export const FormButton = styled.button`
     background: #01bf71;
-    padding: 16px 0;
-    width: 180px;
+    padding: 12px 0;
+    width: 120px;
     margin:0 auto;
     justify-content: center;
     align-items: center;

@@ -5,13 +5,17 @@ import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
 import {
   FormContainer, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput,
-  FormButton, Text, Column, Row
+  FormButton, NavBtnLink, Column, Row, NavBtn
 } from './MakeOrderElements';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const UpdateOrder = () => {
 
@@ -89,74 +93,108 @@ const UpdateOrder = () => {
               <FormH1>Update this order</FormH1>
               <Row>
                 <Column>
-                  <FormLabel htmlFor='for'>Name</FormLabel>
-                  <FormInput type='text' name='name' onChange={(event) => {
+                  <TextField type = 'text' name = 'name' label = "Item name" fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, name: event.target.value });
                   }}
                     required value={result.name || ''} />
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Unit</FormLabel>
-                  <FormInput type='text' name='unit' onChange={(event) => {
+                <FormControl variant="standard" sx={{minWidth: 200 }}>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Unit of Product </InputLabel>
+                    <Select name="unit" label="Units" fullWidth onChange={(event) => {
                     setOrderInfo({ ...result, unit: event.target.value });
                   }}
-                    required value={result.unit || ''} />
+                    required value={result.unit || ''}>
+                      <MenuItem value=""><em>None</em></MenuItem>
+                      <MenuItem value={1}>Piece</MenuItem>
+                      <MenuItem value={2}>KG</MenuItem>
+                      <MenuItem value={3}>Ton</MenuItem>
+                      <MenuItem value={4}>Meter</MenuItem>
+                    </Select>
+                </FormControl>
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Categories</FormLabel>
-                  <FormInput type='number' name='categories' onChange={(event) => {
+                  <FormControl variant="standard" sx={{minWidth: 200 }}>
+                  <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Category </InputLabel>
+                      <Select name="categories" label="Category" fullWidth onChange={(event) => {
                     setOrderInfo({ ...result, categories: event.target.value });
                   }}
-                    required value={result.categories || ''} />
+                    required value={result.categories || ''}>
+                        <MenuItem value=""><em>None</em></MenuItem>
+                        <MenuItem value={1}>Construction</MenuItem>
+                        <MenuItem value={2}>Furniture</MenuItem>
+                        <MenuItem value={3}>Vehicle</MenuItem>
+                        <MenuItem value={4}>Technology</MenuItem>
+                        <MenuItem value={5}>Service</MenuItem>
+                        <MenuItem value={6}>Electronics</MenuItem>
+                      </Select>
+                  </FormControl>
                 </Column>
               </Row>
               <Row>
                 <Column>
-                  <FormLabel htmlFor='for'>Quantity</FormLabel>
-                  <FormInput type='number' name='quantity' onChange={(event) => {
+                <TextField type = 'number' name = "quantity" min="1" label="Quantity" fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, quantity: event.target.value });
                   }}
                     required value={result.quantity || ''} />
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Item Description</FormLabel>
-                  <FormInput type='text' name='itemDescription' onChange={(event) => {
+                  <TextField type = 'text' name = 'itemDescription' label = "Item Description" multiline maxRows={4} fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, itemDescription: event.target.value });
                   }}
                     required value={result.itemDescription || ''} />
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Condition</FormLabel>
-                  <FormInput type='number' name='condition' onChange={(event) => {
+                  <FormControl variant="standard" sx={{minWidth: 200 }}>
+                  <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Condition </InputLabel>
+                      <Select name="condition" label="Condition" fullWidth onChange={(event) => {
                     setOrderInfo({ ...result, condition: event.target.value });
                   }}
-                    required value={result.condition || ''} />
+                    required value={result.condition || ''}>
+                        <MenuItem value=""><em>None</em></MenuItem>
+                        <MenuItem value={1}>Brand new</MenuItem>
+                        <MenuItem value={2}>Broken</MenuItem>
+                        <MenuItem value={3}>Used</MenuItem>
+                        <MenuItem value={4}>Vinted</MenuItem>
+                        <MenuItem value={5}>Refurbished</MenuItem>
+                      </Select>
+                  </FormControl>
                 </Column>
               </Row>
               <Row>
                 <Column>
-                  <FormLabel htmlFor='for'>Price</FormLabel>
-                  <FormInput type='number' name='price' onChange={(event) => {
+                  <TextField type = 'number' name = "price" min="0" label="Price" fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, price: event.target.value });
                   }}
                     required value={result.price || ''} />
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Location</FormLabel>
-                  <FormInput type='text' name='location' onChange={(event) => {
+                  <TextField type = 'text' name = 'location' label = "Location" fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, location: event.target.value });
                   }}
                     required value={result.location || ''} />
                 </Column>
                 <Column>
-                  <FormLabel htmlFor='for'>Expiration Block</FormLabel>
-                  <FormInput type='number' name='expirationBlock' onChange={(event) => {
+                  <TextField type = 'number' name = "expirationBlock" min="1" label="Days of validity" fullWidth variant='standard' onChange={(event) => {
                     setOrderInfo({ ...result, expirationBlock: event.target.value });
                   }}
                     required value={result.expirationBlock || ''} />
                 </Column>
               </Row>
-              <FormButton type='submit'>Confirm update</FormButton>
+              
+              <Row>
+                <Column>
+                <FormButton>
+                <NavBtnLink to = '/history'>Cancel</NavBtnLink>
+                </FormButton>
+                
+                </Column>
+                
+                <Column>
+                <FormButton type='submit'> Update</FormButton>
+                </Column>
+              </Row>
+
             </Form>
           </FormContent>
         </FormWrap>

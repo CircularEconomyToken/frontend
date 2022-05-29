@@ -109,10 +109,10 @@ const OfferHistoryCard = () => {
     return (
         <InfoContainer>
             <InfoWrapper>
-                <Title>History of offers</Title>
+                <Title></Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>Filter by status: </FilterText>
+                    <FilterText>Check out history of your offers! </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">All offers</Option>

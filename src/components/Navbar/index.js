@@ -7,6 +7,7 @@ import { animateScroll as scroll } from 'react-scroll'
 
 const Navbar = ({toggle}) => {
   const [scrollNav, setScrollNav] = useState(false)
+  const [showButton, setVisibility] = useState(false);
 
   const changeNav = () => {
     if (window.scrollY >= 80) {
@@ -17,8 +18,23 @@ const Navbar = ({toggle}) => {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', changeNav)
+    window.addEventListener('scroll', changeNav);
+    checkWalletConnection();
   }, [])
+
+
+  const checkWalletConnection = async (e) => {
+    if (window.ethereum) { 
+      window.ethereum.request({ method: 'eth_accounts' }).then(result => {
+        if (result.length === 0) { // MetaMask is locked or the user has not connected any accounts
+          setVisibility(false);
+        }
+        else {
+          setVisibility(true);
+        }
+    })
+    } 
+  }  
 
   const toggleHome = () => {
     scroll.scrollToTop();
@@ -58,9 +74,13 @@ const Navbar = ({toggle}) => {
                 </NavItem>
 
               </NavMenu>
+              {showButton? <NavBtn>
+                <NavBtnLink to = '/makeOrder'> Add new item </NavBtnLink>
+              </NavBtn> :
               <NavBtn>
-                <NavBtnLink to = '/connectWallet'>Connect Wallet</NavBtnLink>
-              </NavBtn>
+              <NavBtnLink to = '/connectWallet'> Connect wallet </NavBtnLink>
+            </NavBtn>
+            }
           </NavbarContainer>
       </Nav>
     </IconContext.Provider>

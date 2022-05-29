@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
@@ -16,6 +16,10 @@ const WalletCard = () => {
         tokenSymbol: "-",
         totalSupply: "-"
     });
+
+    useEffect(() => {
+      checkWalletConnection();
+    }, [])
 
     const connectWalletHandler = async (e) => {
        e.preventDefault();
@@ -67,7 +71,6 @@ const WalletCard = () => {
         }
     }  
 
-    checkWalletConnection();
     window.ethereum.on('accountsChanged', accountChangedHandler);
     window.ethereum.on('chainChanged', chainChanged);
 
