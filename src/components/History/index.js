@@ -67,10 +67,10 @@ const HistoryCard = () => {
     return (
         <InfoContainer>
             <InfoWrapper>
-                <Title>History of orders</Title>
+                <Title></Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>Filter by category: </FilterText>
+                        <FilterText>Check out history of your orders! </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">All categories</Option>
@@ -82,7 +82,7 @@ const HistoryCard = () => {
                             <Option value = "6">Electronics</Option>
                         </Select>
                         <NavBtn>
-                            <NavBtnLink to = '/makeOrder'>Add good/service</NavBtnLink>
+                            <NavBtnLink to = '/makeOrder'>Add new item</NavBtnLink>
                         </NavBtn>
                     </Filter>
                 </FilterContainer>

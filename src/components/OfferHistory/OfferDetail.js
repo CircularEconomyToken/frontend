@@ -95,6 +95,7 @@ const OfferDetail = ({item}) => {
             let path = `/shipment/${item.orderOwnerAddress}/${item.orderId}/${item.offerId}`; 
             navigate(path);
             console.log(result);
+            toast.success("Deposit is successful!");
         });
     }
 

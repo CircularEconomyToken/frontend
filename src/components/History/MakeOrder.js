@@ -6,6 +6,11 @@ import {FormContainer, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput
     FormButton, Text, Column, Row, FormTextArea, FormSelect, Option} from './MakeOrderElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const categories = [
   { label: "Construction", value: 1 },
@@ -62,7 +67,7 @@ const MakeOrder = () => {
     
         callPromise.then(function(result){
             console.log(result);
-            toast.success("Order is made!");
+            toast.success("Order is placed!");
             setTimeout(function() {
               window.location='/history'
             }, 5000);
@@ -77,73 +82,73 @@ const MakeOrder = () => {
         <FormWrap>
           <FormContent>
             <Form  onSubmit={makeOrder}>
-              <FormH1>Add a Good/Service</FormH1>
+              <FormH1>Add new item!</FormH1>
               <Row>
-                <Column>
-                    <FormLabel htmlFor = 'for'>Product Name</FormLabel>
-                    <FormInput type = 'text' name = 'name' placeholder = "Name" required/>
+                <Column> 
+                    <TextField type = 'text' name = 'name' label = "Item name" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Unit of Product </FormLabel>
-                    <FormSelect name = "unit" placeholder = "Units" required>
-                          <Option value = "0">Select Unit </Option>
-                          <Option value = "1">Piece </Option>
-                          <Option value = "2">KG </Option>
-                          <Option value = "3">Ton </Option>
-                          <Option value = "4">Meter </Option>
-                    </FormSelect>
+                <FormControl variant="standard" sx={{minWidth: 200 }}>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Unit of Product </InputLabel>
+                    <Select name="unit" label="Units" fullWidth required>
+                      <MenuItem value=""><em>None</em></MenuItem>
+                      <MenuItem value={1}>Piece</MenuItem>
+                      <MenuItem value={2}>KG</MenuItem>
+                      <MenuItem value={3}>Ton</MenuItem>
+                      <MenuItem value={4}>Meter</MenuItem>
+                    </Select>
+                </FormControl>  
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Condition</FormLabel>
-                    <FormSelect name = "condition" placeholder = "Condition" required>
-                          <Option value = "0">Select Condition </Option>
-                          <Option value = "1">Brand new </Option>
-                          <Option value = "2">Broken </Option>
-                          <Option value = "3">Used </Option>
-                          <Option value = "4">Vinted </Option>
-                          <Option value = "5">Refurbished </Option>
-                    </FormSelect>
+                <FormControl variant="standard" sx={{minWidth: 200 }}>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Condition </InputLabel>
+                    <Select name="condition" label="Condition" fullWidth required>
+                      <MenuItem value=""><em>None</em></MenuItem>
+                      <MenuItem value={1}>Brand new</MenuItem>
+                      <MenuItem value={2}>Broken</MenuItem>
+                      <MenuItem value={3}>Used</MenuItem>
+                      <MenuItem value={4}>Vinted</MenuItem>
+                      <MenuItem value={5}>Refurbished</MenuItem>
+                    </Select>
+                </FormControl> 
                 </Column>
               </Row>
               <Row>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Quantity</FormLabel>
-                    <FormInput type = 'number' name = "quantity" min="1" placeholder = "Quantity" required/>
+                    <TextField type = 'number' name = "quantity" min="1" label="Quantity" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Location</FormLabel>
-                    <FormInput type = 'text' name = "location" placeholder = "Location" required/>
+                    <TextField type = 'text' name = 'location' label = "Location" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Category</FormLabel>
-                    <FormSelect name = "categories" placeholder = "Categories" required>
-                          <Option value = "0">Select Category </Option>
-                          <Option value = "1">Construction</Option>
-                          <Option value = "2">Furniture</Option>
-                          <Option value = "3">Vehicle</Option>
-                          <Option value = "4">Technology</Option>
-                          <Option value = "5">Service</Option>
-                          <Option value = "6">Electronics</Option>
-                    </FormSelect>
+                <FormControl variant="standard" sx={{minWidth: 200 }}>
+                <InputLabel variant="standard" htmlFor="uncontrolled-native" required> Category </InputLabel>
+                    <Select name="categories" label="Category" fullWidth required>
+                      <MenuItem value=""><em>None</em></MenuItem>
+                      <MenuItem value={1}>Construction</MenuItem>
+                      <MenuItem value={2}>Furniture</MenuItem>
+                      <MenuItem value={3}>Vehicle</MenuItem>
+                      <MenuItem value={4}>Technology</MenuItem>
+                      <MenuItem value={5}>Service</MenuItem>
+                      <MenuItem value={6}>Electronics</MenuItem>
+                    </Select>
+                </FormControl>
                 </Column>
               </Row>
               <Row>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Price</FormLabel>
-                    <FormInput type = 'number' name = "price" min="0" placeholder = "Price" required/>
+                  <TextField type = 'number' name = "price" min="0" label="Price" fullWidth variant='standard' required/>   
                 </Column>
                 
                 <Column>
-                    <FormLabel htmlFor = 'for'>Item Description</FormLabel>
-                    <FormTextArea type = 'text' name = "itemDescription" placeholder = "Item Description" required/>
+                  <TextField type = 'text' name = 'itemDescription' label = "Item Description" multiline maxRows={4} fullWidth variant='standard' required/>
                 </Column>
 
                 <Column>
-                    <FormLabel htmlFor = 'for'>Offer Expires </FormLabel>
-                    <FormInput type = 'number' name = "expirationBlock" min="1" placeholder = "Number of days" required/>
+                    <TextField type = 'number' name = "expirationBlock" min="1" label="Days of validity" fullWidth variant='standard' required/>            
                 </Column>
               </Row>
-              <FormButton type = 'submit'>Add</FormButton>  
+              <FormButton type = 'submit'>Place order</FormButton>  
             </Form>
           </FormContent> 
         </FormWrap>

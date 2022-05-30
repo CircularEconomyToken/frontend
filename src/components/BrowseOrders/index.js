@@ -102,10 +102,10 @@ const BrowseOrders = () => {
     return (
         <InfoContainer>
             <InfoWrapper>
-                <Title>Current orders</Title>
+                <Title></Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>Filter by category: </FilterText>
+                        <FilterText> Check out items placed by others! </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">All categories</Option>

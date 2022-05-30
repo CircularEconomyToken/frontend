@@ -7,14 +7,20 @@ import {Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput,
     FormButton, Text, Column, Row, FormTextArea} from './MakeOfferElements';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
     const [result, setOrderInfo] = useState({});
-    //const [field, setValue] = useState(null);
+    const [category, setCategoryValue] = useState(null);
+    const [quantity, setQuantity] = useState(null);
+    const [price, setPrice] = useState(null);
+    const [unit, setUnit] = useState(null);
+    const [condition, setCondition] = useState(null);
+    const [expirationBlock, setExpiration] = useState(null);
 
     useEffect(() => {
         handleContract();
@@ -24,9 +30,29 @@ const MakeOffer = () => {
     const { id } = useParams();
     const { address } = useParams();
 
-    const { register, handleSubmit, reset, setValue, getValues, errors, formState } = useForm({
-      resolver: yupResolver()
-    });
+    const getUnit = (category) => {
+      if (category === "1") return  "Piece";
+      else if (category === "2") return  "KG";
+      else if (category === "3") return  "Ton";
+      else return  "Meter";
+  }
+
+    const getCategory = (category) => {
+      if (category === "1") return  "Construction";
+      else if (category === "2") return  "Furniture";
+      else if (category === "3") return  "Vehicle";
+      else if (category === "4") return  "Technology";
+      else if (category === "5") return  "Service";
+      else return  "Electronics";
+  }
+
+  const getCondition = (category) => {
+    if (category === "1") return  "Brand new";
+    else if (category === "2") return  "Broken";
+    else if (category === "3") return  "Used";
+    else if (category === "4") return  "Vinted";
+    else return  "Refurbished";
+}
 
     const handleContract = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -55,7 +81,7 @@ const MakeOffer = () => {
     
         callPromise.then(function(result){
             console.log(result);
-            toast.success("Offer is made!");
+            toast.success("Offer is placed!");
             setTimeout(function() {
               window.location='/offerHistory'
             }, 5000);
@@ -73,10 +99,14 @@ const MakeOffer = () => {
     
     var callPromise = contractObj.getOrder(orderOwner, id);
     callPromise.then(function (result) {
-      const fields = ['name', 'unit', 'categories', 'quantity', 'itemDescription', 'condition', 'price', 'location', 'expirationBlock'];
-      fields.forEach(field => setValue(field, result[field]));
       setOrderInfo(result);
-      console.log(result);
+      console.log(result.categories.toString());
+      setCategoryValue(result.categories.toString());
+      setQuantity(result.quantity.toString());
+      setPrice(result.price.toString());
+      setUnit(result.unit.toString());
+      setCondition(result.condition.toString());
+      setExpiration(result.expirationBlock.toString());
     });
   }
 
@@ -85,78 +115,95 @@ const MakeOffer = () => {
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
     newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <Container>
+
+    <FormWrap>
+        <FormContent>
+          <Form  onSubmit={makeOffer}> 
+
+          <FormH1>Make an offer</FormH1>
+
         
-        <FormWrap>
-          <FormContent>
-            <Form  onSubmit={makeOffer}>
-            <FormH1>Make an offer</FormH1>
+          <Grid container direction="row" justify ="center" alignItems="center">
+                  <Grid item xs={3}></Grid>   
+                  <Grid item xs={4} >
+                    <Typography gutterBottom>Item name</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{result.name}</Typography>
+                  </Grid>
 
-            <Row>
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Description</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{result.itemDescription}</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Location</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{result.location}</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Category</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{getCategory(category)}</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Condition</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{getCondition(condition)} </Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Price</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{price} Euro</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Quantity</Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom>{quantity} {getUnit(unit)}</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={4}>
+                    <Typography gutterBottom>Validity of order </Typography>
+                  </Grid>
+                  <Grid item xs={5}>
+                    <Typography gutterBottom> {expirationBlock} Days </Typography>
+                  </Grid>
+
+        </Grid>
+
+        
+            
+                <Row>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Offer Price</FormLabel>
-                    <FormInput type = 'number' name = "price" min="0" placeholder = "Price" required/>
+                    <TextField type = 'number' name = 'price' label = "Offer price" min="0" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Use Case</FormLabel>
-                    <FormTextArea type = 'text' name = "usecase" placeholder = "Usecase" required/>
+                    <TextField type = 'text' name = "usecase" label = "Usecase" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <FormLabel htmlFor = 'for'>Earliest Day of Pick Up</FormLabel>
-                    <FormInput type = 'number' name = "earliestBlock" min="1" placeholder = "Number of days" required/>
+                    <TextField type = 'number' name = "earliestBlock" min="1" label = "Validity of offer in days" fullWidth variant='standard' required/>
                 </Column>
               </Row>
-
-            <Row>
-                <Column>
-                  <FormLabel htmlFor='for'>Product name</FormLabel>
-                  <FormInput type='text' name='name' value={result.name || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Unit</FormLabel>
-                  <FormInput type='text' name='unit' value={result.unit || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Categories</FormLabel>
-                  <FormInput type='number' name='categories' value={result.categories || ''} />
-                </Column>
-              </Row>
-              <Row>
-                <Column>
-                  <FormLabel htmlFor='for'>Quantity</FormLabel>
-                  <FormInput type='number' name='quantity' value={result.quantity || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Item Description</FormLabel>
-                  <FormInput type='text' name='itemDescription'value={result.itemDescription || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Condition</FormLabel>
-                  <FormInput type='number' name='condition' value={result.condition || ''} />
-                </Column>
-              </Row>
-              <Row>
-                <Column>
-                  <FormLabel htmlFor='for'>Order Price</FormLabel>
-                  <FormInput type='number' name='price' value={result.price || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Location</FormLabel>
-                  <FormInput type='text' name='location' value={result.location || ''} />
-                </Column>
-                <Column>
-                  <FormLabel htmlFor='for'>Expiration Block</FormLabel>
-                  <FormInput type='number' name='expirationBlock' value={result.expirationBlock || ''} />
-                </Column>
-                </Row>
-              
-          
-
-              
-              
-              
-              <FormButton type = 'submit'>Confirm Offer</FormButton> 
-              
-
+              <FormButton type = 'submit'>Place offer</FormButton> 
             </Form>
           </FormContent> 
         </FormWrap>
