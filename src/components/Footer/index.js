@@ -20,7 +20,9 @@ const Footer = () => {
                     <FooterLinkItems>
                         <FooterLinkTitle> About us </FooterLinkTitle>
                         <FooterLink to = '/about'>How it works</FooterLink>
-                        <div> <a href= "https://medium.com/@checkhaben/how-to-setup-metamask-in-your-browser-7226251ea080" target="_blank"> How to create wallet</a> </div>
+                        <p> <a href= "https://medium.com/@checkhaben/how-to-setup-metamask-in-your-browser-7226251ea080" 
+                        style={{color:'white', fontSize:'14px', textDecoration: 'none'}} target="_blank"> 
+                        How to create wallet</a> </p>
                         <FooterLink to = '/info'>Terms of Service</FooterLink>  
                     </FooterLinkItems>
                     <FooterLinkItems>

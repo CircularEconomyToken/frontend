@@ -119,7 +119,7 @@ export const FormButton = styled.button`
     align-items: center;
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: #000;
     font-size: 16px;
     cursor: pointer;
 `

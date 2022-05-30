@@ -55,10 +55,10 @@ const OfferCard = () => {
     return (
         <InfoContainer>
             <InfoWrapper>
-                <Title>History of Offers</Title>
+                <Title></Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>Filter by status: </FilterText>
+                        <FilterText>View offers on your item: </FilterText>
                         <Select onChange={(event) => changeCategory(event.target.value)} 
         value = {currentCategory}>
                             <Option value = "0">All offers</Option>

@@ -140,7 +140,7 @@ export const FormButton = styled.button`
     align-items: center;
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: #000;
     font-size: 16px;
     cursor: pointer;
 `
@@ -158,7 +158,7 @@ export const NavBtnLink = styled(Link)`
     background: #01BF71;
     white-space: nowrap;
     padding: 10px 22px;
-    color: #fff;
+    color: #000;
     font-size: 16px;
     outline: none;
     border: none;
