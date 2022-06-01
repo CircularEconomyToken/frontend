@@ -9,8 +9,8 @@ import OfferDetail from './OfferDetail'
 
 const OfferHistoryCard = () => {
     const [contract, setContract] = useState(null);
-    const [initialOrders, setInitialOrders] = useState([]);
-    const [orders, setOrders] = useState([]);
+    const [initialOffers, setinitialOffers] = useState([]);
+    const [offers, setOffers] = useState([]);
     const [currentCategory, setCurrentCategory] = useState(null);
     const allOffers = [];
 
@@ -39,15 +39,15 @@ const OfferHistoryCard = () => {
                 if(result[i].toLowerCase() != userAddr.toLowerCase()){
                     if (!allUniqueAddresses.includes(result[i])) {
                          allUniqueAddresses.push(result[i]); 
-                         getOrders(contractObj, allUniqueAddresses)
+                         getOffers(contractObj, allUniqueAddresses);
                     }
                 }            
             }
         });
     }
 
-    const getOrders = (contractObj, allUniqueAddresses) => {
-        const allOrders = [];
+    const getOffers = (contractObj, allUniqueAddresses) => {
+        
         allUniqueAddresses.forEach(address => {
             var callPromise = contractObj.getOrders(address);
             callPromise.then(function(result){
@@ -73,6 +73,7 @@ const OfferHistoryCard = () => {
                                 temp["offerId"] = index;
                                 temp["orderOwnerAddress"] = address;
                                 allOffers.push(temp);
+                                //console.log(allOffers);
                                 showAllOffers(allOffers);
                             }
                         })
@@ -84,21 +85,23 @@ const OfferHistoryCard = () => {
     }
 
     const showAllOffers = (listOfOffers) => {
-        setInitialOrders(listOfOffers);
-        setOrders(listOfOffers);
+        setinitialOffers(listOfOffers);
+        setOffers(listOfOffers);
+        //console.log(initialOffers);
     }
 
     const changeCategory = (category) => {
         if (category == "0") {
-            setOrders(initialOrders);
+            // console.log(initialOffers);
+            setOffers(initialOffers);
         } else if (category == "1") {
-            var filtered = initialOrders.filter(item => item.status == "Picked")
-            setOrders(filtered);
-            console.log(filtered);
+            var filtered = initialOffers.filter(item => item.status == "Picked")
+            setOffers(filtered);
+            //console.log(filtered);
         } else {
-            var filtered = initialOrders.filter(item => item.status == "Active" || item.status == "active")
-            setOrders(filtered);
-            console.log(filtered);
+            var filtered = initialOffers.filter(item => item.status == "Active" || item.status == "active")
+            setOffers(filtered);
+            //sconsole.log(filtered);
         }
       }
 
@@ -122,7 +125,7 @@ const OfferHistoryCard = () => {
                     </Filter>
                 </FilterContainer>
                 <OrderContainer>
-                    {orders.map(item => (
+                    {offers.map(item => (
                         <OfferDetail item = {item} />
                     ))}
                     <EmptyView/>

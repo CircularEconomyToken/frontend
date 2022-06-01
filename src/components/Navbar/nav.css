@@ -26,4 +26,5 @@ nav {
   /* Specific styles for active links */
   .link-active {
     color: #01bf71;
+    border-bottom: 4px solid #01bf71;
   }

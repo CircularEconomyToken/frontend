@@ -18,7 +18,10 @@ const Offer = ({item, orderId, offerId, name}) => {
         var callPromise = contractObj.pickOffer(orderId, offerId);
         callPromise.then(function(result) {
             toast.success("Offer is picked!");
-            console.log(result);
+            setText("Already picked");
+            setTimeout(function() {
+                window.location='/history'
+              }, 5000);
         });
     }
 
