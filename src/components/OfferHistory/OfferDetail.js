@@ -13,6 +13,7 @@ const OfferDetail = ({item}) => {
     const [contract, setContract] = useState(null);
     const [isApproveAllowed, setIsApproveAllowed] = useState(false);
     const [isConfirmAllowed, setIsConfirmAllowed] = useState(false);
+    const [isDepositSuccessful, setIsDepositSuccessful] = useState(false);
     
     let navigate = useNavigate(); 
 
@@ -92,10 +93,11 @@ const OfferDetail = ({item}) => {
             ls.set('orderCategory', getCategory(item.orderCategory));
             ls.set('offerPrice', item.price.toString());
             ls.set('offerUsecase', item.usecase.toString());
+            console.log(result);
+            setIsDepositSuccessful(true);
+            toast.success("Deposit is successful!");
             let path = `/shipment/${item.orderOwnerAddress}/${item.orderId}/${item.offerId}`; 
             navigate(path);
-            console.log(result);
-            toast.success("Deposit is successful!");
         });
     }
 
@@ -152,6 +154,14 @@ const OfferDetail = ({item}) => {
             <Column>
                 <NavBtn onClick={() => {confirmOffer(item)}}>
                     <NavBtnLink to = {{pathname: ""}}>Deposit</NavBtnLink>
+                </NavBtn>
+            </Column>
+            }
+
+            {item.status == "Picked" && isDepositSuccessful &&
+            <Column>
+                <NavBtn>
+                    <NavBtnLink to = {{pathname: `/shipment/${item.orderOwnerAddress}/${item.orderId}/${item.offerId}`}}>Confirm receival </NavBtnLink>
                 </NavBtn>
             </Column>
             }

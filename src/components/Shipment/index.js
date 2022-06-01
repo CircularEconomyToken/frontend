@@ -60,7 +60,6 @@ function Shipment({
                     <FormLabel htmlFor = 'for'>Quantity: {orderQuantity} {orderUnit}</FormLabel>
                     <FormLabel htmlFor = 'for'>Location: {orderLocation}</FormLabel>
                     <FormLabel htmlFor = 'for'>Your offered price: {offerPrice}</FormLabel>
-                    <EmptyView/>
                     
                     <NavBtn onClick={() => {confirmShipment()}}>
                         <NavBtnLink to = '' 
@@ -73,6 +72,9 @@ function Shipment({
                         dark = {dark ? 1 : 0}
                         dark2 = {dark2 ? 1 : 0}
                         >Confirm Receival</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn>
+                        <NavBtnLink to= '/offerHistory'>Cancel</NavBtnLink>
                     </NavBtn>
                     </Row>
                 </TextWrapper>

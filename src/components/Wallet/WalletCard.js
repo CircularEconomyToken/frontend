@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {ethers} from 'ethers';
 import erc20abi from '../../erc20abi.json';
 import ls from 'local-storage'
-import {Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, Text} from './WalletElements';
+import {MainContainer, MainBg, Container, FormWrap, Icon, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, Text} from './WalletElements';
+import image from '../../images/etherium_image.png'
 
 const WalletCard = () => {
     const [disable, setDisable] = useState(false);
@@ -76,6 +77,10 @@ const WalletCard = () => {
 
     return (
       <>
+      <MainContainer>
+        <MainBg style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain", 
+    
+    }}></MainBg>
       <Container>
         <FormWrap>
           <FormContent>
@@ -83,13 +88,14 @@ const WalletCard = () => {
               <Text>{successMsg}{errorMessage}</Text>
               <Text></Text>
               <FormButton color ='#01bf71' disabled={disable}>Connect</FormButton>
-              <Text>If you have multiple accounts, you can switch account in Metamask wallet</Text>
+              <Text>If you have multiple accounts, you can switch account in the Metamask wallet</Text>
               {/*<Text> Your address: { defaultAccount }</Text>
               <Text> Your balance: { userBalance }</Text>*/}
             </Form>
           </FormContent>
         </FormWrap>
       </Container>
+      </MainContainer>
         </>
     )
 }

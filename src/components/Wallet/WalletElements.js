@@ -1,6 +1,38 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
+export const MainContainer = styled.div`
+    background: #0c0c0c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    height: 800px;
+    position: relative;
+    z-index: 1; 
+
+    :before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+    }
+`
+
+export const MainBg = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+`
+
 export const Container = styled.div`
     min-height: 692px;
     bottom: 0;
@@ -11,7 +43,7 @@ export const Container = styled.div`
     padding-bottom: 120px;
     z-index: 0;
     overflow: hidden;
-    background: #01bf71;
+    
     /* linear-gradient(
         108deg,
         rgba(1, 147, 86, 1) 0%,
@@ -62,7 +94,7 @@ export const Form = styled.form`
    z-index:1;
    display: grid;
    margin: 0 auto;
-   padding: 80px 32px;
+   padding: 50px 32px;
    border-radius: 4px;
    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 
@@ -104,7 +136,7 @@ export const FormButton = styled.button`
 
 export const Text = styled.span`
     text-align: center;
-    margin-top: 24px;
+    margin-top: 15px;
     color: #fff;
     font-size: 14px;
 `

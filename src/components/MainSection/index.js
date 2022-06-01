@@ -3,6 +3,8 @@ import Video from '../../videos/intro.mp4'
 import {MainContainer, MainBg, VideoBg, MainContent, MainH1,
     MainP, MainBtnWrapper, NavBtnLink} from './MainElements'
 import {Button} from '../ButtonElements'
+import image from '../../images/etherium_image.png'
+
 
 const MainSection = () => {
   return (

@@ -90,7 +90,7 @@ export const NavLinks = styled(LinkR)`
 export const NavBtn = styled.nav`
     display: flex;
     align-items: center;
-
+    max-height: 40px;
     @media screen and (max-width: 768px) {
         display: none;
     }
