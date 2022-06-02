@@ -22,6 +22,9 @@ const MakeOffer = () => {
     const [unit, setUnit] = useState(null);
     const [condition, setCondition] = useState(null);
     const [expirationBlock, setExpiration] = useState(null);
+    const [name, setName] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [location, setLocation] = useState(null);
 
     useEffect(() => {
         handleContract();
@@ -100,8 +103,11 @@ const MakeOffer = () => {
     
     var callPromise = contractObj.getOrder(orderOwner, id);
     callPromise.then(function (result) {
-      setOrderInfo(result);
-      console.log(result.categories.toString());
+      //setOrderInfo(result);
+      //console.log(result.categories.toString());
+      setName(result.name.toString());
+      setDescription(result.itemDescription.toString());
+      setLocation(result.location.toString());
       setCategoryValue(result.categories.toString());
       setQuantity(result.quantity.toString());
       setPrice(result.price.toString());
@@ -131,7 +137,7 @@ const MakeOffer = () => {
                     <Typography gutterBottom>Item name</Typography>
                   </Grid>
                   <Grid item xs={5}>
-                    <Typography gutterBottom>{result.name}</Typography>
+                    <Typography gutterBottom>{name}</Typography>
                   </Grid>
 
                   <Grid item xs={3}></Grid>
@@ -139,7 +145,7 @@ const MakeOffer = () => {
                     <Typography gutterBottom>Description</Typography>
                   </Grid>
                   <Grid item xs={5}>
-                    <Typography gutterBottom>{result.itemDescription}</Typography>
+                    <Typography gutterBottom>{description}</Typography>
                   </Grid>
 
                   <Grid item xs={3}></Grid>
@@ -147,7 +153,7 @@ const MakeOffer = () => {
                     <Typography gutterBottom>Location</Typography>
                   </Grid>
                   <Grid item xs={5}>
-                    <Typography gutterBottom>{result.location}</Typography>
+                    <Typography gutterBottom>{location}</Typography>
                   </Grid>
 
                   <Grid item xs={3}></Grid>
@@ -191,15 +197,13 @@ const MakeOffer = () => {
                   </Grid>
 
         </Grid>
-
-        
             
                 <Row>
                 <Column>
                     <TextField type = 'number' name = 'price' label = "Offer price" min="0" fullWidth variant='standard' required/>
                 </Column>
                 <Column>
-                    <TextField type = 'text' name = "usecase" label = "Usecase" fullWidth variant='standard' required/>
+                    <TextField type = 'text' name = "usecase" label = "Usecase"  multiline maxRows={4} fullWidth variant='standard' required/>
                 </Column>
                 <Column>
                     <TextField type = 'number' name = "earliestBlock" min="1" label = "Validity of offer in days" fullWidth variant='standard' required/>
@@ -213,7 +217,7 @@ const MakeOffer = () => {
       </MainContainer>
     </>
   );
-  //}
+  
 }
 
 
