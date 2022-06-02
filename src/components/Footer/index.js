@@ -44,23 +44,10 @@ const Footer = () => {
             <SocialMedia>
                 <SocialMediaWrap>
                     <SocialLogo to = '/' onClick = {toggleHome}>
-                        Circular Economy
+                        Distributed Circular Economy
                     </SocialLogo>
-                    <WebsiteRights> Circular Economy © {new Date().getFullYear()}. All rights reserved.</WebsiteRights>
-                    <SocialIcons>
-                        <SocialIconLink href = '//www.facebook.com/' target = '_blank' aria-label = 'Facebook'>
-                            <FaFacebook/>
-                        </SocialIconLink>
-                        <SocialIconLink href = '//www.instagram.com/' target = '_blank' aria-label = 'Instagram'>
-                            <FaInstagram/>
-                        </SocialIconLink>
-                        <SocialIconLink href = '//www.linkedin.com/'  target = '_blank' aria-label = 'Linkedin'>
-                            <FaLinkedin/>
-                        </SocialIconLink>
-                        <SocialIconLink href = '//www.youtube.com/' target = '_blank' aria-label = 'Youtube'>
-                            <FaYoutube/>
-                        </SocialIconLink>
-                    </SocialIcons>
+                    <WebsiteRights> Distributed Circular Economy © {new Date().getFullYear()}. All rights reserved.</WebsiteRights>
+                    
                 </SocialMediaWrap>
             </SocialMedia>
         </FooterWrap>
