@@ -10,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
+import image from '../../images/etherium_image.png'
+import {MainContainer, MainBg} from '../Wallet/WalletElements'
 
 const MakeOffer = () => {
     const [contract, setContract ] = useState(null);
@@ -112,10 +113,11 @@ const MakeOffer = () => {
 
   return (
     <>
+    <MainContainer>
+        <MainBg style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain"}}></MainBg>
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
     newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
     <Container>
-
     <FormWrap>
         <FormContent>
           <Form  onSubmit={makeOffer}> 
@@ -208,6 +210,7 @@ const MakeOffer = () => {
           </FormContent> 
         </FormWrap>
       </Container>
+      </MainContainer>
     </>
   );
   //}

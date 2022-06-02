@@ -11,6 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import image from '../../images/etherium_image.png'
+import {MainContainer, MainBg} from '../Wallet/WalletElements'
 
 const categories = [
   { label: "Construction", value: 1 },
@@ -78,6 +80,8 @@ const MakeOrder = () => {
     <>
     <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} 
     newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+    <MainContainer>
+        <MainBg style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain"}}></MainBg>
     <FormContainer>
         <FormWrap>
           <FormContent>
@@ -153,6 +157,7 @@ const MakeOrder = () => {
           </FormContent> 
         </FormWrap>
       </FormContainer>
+      </MainContainer>
     </>
   )
 }
