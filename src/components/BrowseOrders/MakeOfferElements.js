@@ -7,11 +7,11 @@ export const Container = styled.div`
     left: 0;
     right: 0;
     top: 0;
-    padding-top: 120px;
+    padding-top: 80px;
     padding-bottom: 120px;
     z-index: 0;
     overflow: hidden;
-    background: #000;
+    
     /* linear-gradient(
         108deg,
         rgba(1, 147, 86, 1) 0%,

@@ -16,6 +16,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import image from '../../images/etherium_image.png'
+import {MainContainer, MainBg} from '../Wallet/WalletElements'
 
 const UpdateOrder = () => {
 
@@ -84,6 +86,8 @@ const UpdateOrder = () => {
 
   return (
     <>
+    <MainContainer>
+        <MainBg style={{ backgroundImage:`url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain"}}></MainBg>
     <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} 
             newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
       <FormContainer>
@@ -199,6 +203,7 @@ const UpdateOrder = () => {
           </FormContent>
         </FormWrap>
       </FormContainer>
+      </MainContainer>
     </>
   )
 }

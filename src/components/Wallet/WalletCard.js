@@ -60,7 +60,7 @@ const WalletCard = () => {
           window.ethereum.request({ method: 'eth_accounts' }).then(result => {
             if (result.length === 0) { // MetaMask is locked or the user has not connected any accounts
               setDisable(false);
-              setSuccessMsg("Please connect to MetaMask wallet");
+              setSuccessMsg("Please connect to the MetaMask wallet");
             }
             else {
               setDisable(true);
