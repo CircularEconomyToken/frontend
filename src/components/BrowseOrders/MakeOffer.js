@@ -177,7 +177,7 @@ const MakeOffer = () => {
                     <Typography gutterBottom>Price</Typography>
                   </Grid>
                   <Grid item xs={5}>
-                    <Typography gutterBottom>{price} Euro</Typography>
+                    <Typography gutterBottom>{price}€</Typography>
                   </Grid>
 
                   <Grid item xs={3}></Grid>

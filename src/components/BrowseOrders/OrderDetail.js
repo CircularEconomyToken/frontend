@@ -51,7 +51,7 @@ const OrderDetail = ({item}) => {
 
             <Column>
                 <TitleText> Price </TitleText>
-                <Text> {item.price.toString()} </Text>
+                <Text> {item.price.toString()}€ </Text>
             </Column>
 
             <Column>
