@@ -56,10 +56,10 @@ function Shipment({
                     <FormLabel htmlFor = 'for'>Your order: {orderName}</FormLabel>
                     <FormLabel htmlFor = 'for'>Category: {orderCategory}</FormLabel>
                     <FormLabel htmlFor = 'for'>Condition: {orderCondition}</FormLabel>
-                    <FormLabel htmlFor = 'for'>Price: {orderPrice}</FormLabel>
+                    <FormLabel htmlFor = 'for'>Price: {orderPrice}€ </FormLabel>
                     <FormLabel htmlFor = 'for'>Quantity: {orderQuantity} {orderUnit}</FormLabel>
                     <FormLabel htmlFor = 'for'>Location: {orderLocation}</FormLabel>
-                    <FormLabel htmlFor = 'for'>Your offered price: {offerPrice}</FormLabel>
+                    <FormLabel htmlFor = 'for'>Your offered price: {offerPrice}€ </FormLabel>
                     
                     <NavBtn onClick={() => {confirmShipment()}}>
                         <NavBtnLink to = '' 

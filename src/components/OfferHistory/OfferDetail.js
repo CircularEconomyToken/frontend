@@ -114,7 +114,7 @@ const OfferDetail = ({item}) => {
 
             <Column>
                 <TitleText> Order Price </TitleText>
-                <Text> {item.orderPrice.toString()} </Text>
+                <Text> {item.orderPrice.toString()}€ </Text>
             </Column> 
 
             <Column>
@@ -134,7 +134,7 @@ const OfferDetail = ({item}) => {
 
             <Column>
                 <TitleText> Offer Price </TitleText>
-                <Text> {item.price.toString()} </Text>
+                <Text> {item.price.toString()}€ </Text>
             </Column>
 
             <Column>
